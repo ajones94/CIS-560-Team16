@@ -13,18 +13,31 @@ namespace MovieApp
 {
     public partial class Form1 : Form
     {
-        private static string databaseConnectionString;
+        private static SqlConnection connect;
 
 
 
         public Form1()
         {
             InitializeComponent();
-            SqlConnection connect = new SqlConnection();
+            selectionRangeSlider1.SetLabels(labelLowerRating, labelHigherRating);
+            connect = new SqlConnection();
             connect.ConnectionString = "Data Source = mssql.cs.ksu.edu;" +
                 "Initial Catalog=cis560_team16;" +
                 "Integrated Security=SSPI;";
             connect.Open();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+            //Application.Run(new AdminDashboard());
+            AdminDashboard admin = new AdminDashboard();
+            admin.Show();
         }
     }
 }

@@ -1,10 +1,10 @@
 \\files.cs.ksu.edu\ianriley97\Documents\CIS562\MovieApp\MovieApp\MovieApp\bin\Debug\MovieApp.exe.config
 \\files.cs.ksu.edu\ianriley97\Documents\CIS562\MovieApp\MovieApp\MovieApp\bin\Debug\MovieApp.exe
 \\files.cs.ksu.edu\ianriley97\Documents\CIS562\MovieApp\MovieApp\MovieApp\bin\Debug\MovieApp.pdb
-\\files.cs.ksu.edu\ianriley97\Documents\CIS562\MovieApp\MovieApp\MovieApp\obj\Debug\MovieApp.csprojAssemblyReference.cache
 \\files.cs.ksu.edu\ianriley97\Documents\CIS562\MovieApp\MovieApp\MovieApp\obj\Debug\MovieApp.Form1.resources
 \\files.cs.ksu.edu\ianriley97\Documents\CIS562\MovieApp\MovieApp\MovieApp\obj\Debug\MovieApp.Properties.Resources.resources
 \\files.cs.ksu.edu\ianriley97\Documents\CIS562\MovieApp\MovieApp\MovieApp\obj\Debug\MovieApp.csproj.GenerateResource.cache
 \\files.cs.ksu.edu\ianriley97\Documents\CIS562\MovieApp\MovieApp\MovieApp\obj\Debug\MovieApp.csproj.CoreCompileInputs.cache
 \\files.cs.ksu.edu\ianriley97\Documents\CIS562\MovieApp\MovieApp\MovieApp\obj\Debug\MovieApp.exe
 \\files.cs.ksu.edu\ianriley97\Documents\CIS562\MovieApp\MovieApp\MovieApp\obj\Debug\MovieApp.pdb
+\\files.cs.ksu.edu\ianriley97\Documents\CIS562\MovieApp\MovieApp\MovieApp\obj\Debug\MovieApp.AdminDashboard.resources
