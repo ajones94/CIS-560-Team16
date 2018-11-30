@@ -162,6 +162,14 @@ namespace MovieApp
             SelectionRangeSlider_MouseMove(sender, e);
         }
 
+        public void ResetLabelValues()
+        {
+            this.selectedMin = 0;
+            this.SelectedMax = 100;
+            lowerRatingLabel.Text = this.SelectedMin.ToString();
+            higherRatingLabel.Text = this.SelectedMax.ToString();
+        }
+
         void SelectionRangeSlider_MouseMove(object sender, MouseEventArgs e)
         {
             //if the left button is pushed, move the selected thumb

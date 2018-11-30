@@ -39,10 +39,17 @@
             this.ratingLabel = new System.Windows.Forms.Label();
             this.labelLowerRating = new System.Windows.Forms.Label();
             this.labelHigherRating = new System.Windows.Forms.Label();
-            this.ratingSelectionSlider = new MovieApp.SelectionRangeSlider();
             this.label5 = new System.Windows.Forms.Label();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.resultsListView = new System.Windows.Forms.ListView();
+            this.movieTitleHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.directorFirstNameHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.directorLastNameHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.genreHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.minHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.maxHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.searchButton = new System.Windows.Forms.Button();
+            this.resetButton = new System.Windows.Forms.Button();
+            this.ratingSelectionSlider = new MovieApp.SelectionRangeSlider();
             this.SuspendLayout();
             // 
             // movieTitleTextBox
@@ -57,7 +64,7 @@
             this.movieTitleLabel.AutoSize = true;
             this.movieTitleLabel.Location = new System.Drawing.Point(130, 46);
             this.movieTitleLabel.Name = "movieTitleLabel";
-            this.movieTitleLabel.Size = new System.Drawing.Size(59, 13);
+            this.movieTitleLabel.Size = new System.Drawing.Size(66, 15);
             this.movieTitleLabel.TabIndex = 1;
             this.movieTitleLabel.Text = "Movie Title";
             // 
@@ -80,7 +87,7 @@
             this.directorFirstNameLabel.AutoSize = true;
             this.directorFirstNameLabel.Location = new System.Drawing.Point(12, 98);
             this.directorFirstNameLabel.Name = "directorFirstNameLabel";
-            this.directorFirstNameLabel.Size = new System.Drawing.Size(97, 13);
+            this.directorFirstNameLabel.Size = new System.Drawing.Size(113, 15);
             this.directorFirstNameLabel.TabIndex = 4;
             this.directorFirstNameLabel.Text = "Director First Name";
             // 
@@ -89,7 +96,7 @@
             this.directorLastNameLabel.AutoSize = true;
             this.directorLastNameLabel.Location = new System.Drawing.Point(177, 98);
             this.directorLastNameLabel.Name = "directorLastNameLabel";
-            this.directorLastNameLabel.Size = new System.Drawing.Size(98, 13);
+            this.directorLastNameLabel.Size = new System.Drawing.Size(113, 15);
             this.directorLastNameLabel.TabIndex = 5;
             this.directorLastNameLabel.Text = "Director Last Name";
             // 
@@ -114,7 +121,7 @@
             this.genreLabel.AutoSize = true;
             this.genreLabel.Location = new System.Drawing.Point(143, 154);
             this.genreLabel.Name = "genreLabel";
-            this.genreLabel.Size = new System.Drawing.Size(36, 13);
+            this.genreLabel.Size = new System.Drawing.Size(41, 15);
             this.genreLabel.TabIndex = 7;
             this.genreLabel.Text = "Genre";
             // 
@@ -123,7 +130,7 @@
             this.ratingLabel.AutoSize = true;
             this.ratingLabel.Location = new System.Drawing.Point(141, 206);
             this.ratingLabel.Name = "ratingLabel";
-            this.ratingLabel.Size = new System.Drawing.Size(38, 13);
+            this.ratingLabel.Size = new System.Drawing.Size(43, 15);
             this.ratingLabel.TabIndex = 10;
             this.ratingLabel.Text = "Rating";
             // 
@@ -132,7 +139,7 @@
             this.labelLowerRating.AutoSize = true;
             this.labelLowerRating.Location = new System.Drawing.Point(9, 224);
             this.labelLowerRating.Name = "labelLowerRating";
-            this.labelLowerRating.Size = new System.Drawing.Size(13, 13);
+            this.labelLowerRating.Size = new System.Drawing.Size(14, 15);
             this.labelLowerRating.TabIndex = 11;
             this.labelLowerRating.Text = "0";
             // 
@@ -141,9 +148,78 @@
             this.labelHigherRating.AutoSize = true;
             this.labelHigherRating.Location = new System.Drawing.Point(316, 224);
             this.labelHigherRating.Name = "labelHigherRating";
-            this.labelHigherRating.Size = new System.Drawing.Size(25, 13);
+            this.labelHigherRating.Size = new System.Drawing.Size(28, 15);
             this.labelHigherRating.TabIndex = 12;
             this.labelHigherRating.Text = "100";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(0, 9);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(77, 15);
+            this.label5.TabIndex = 14;
+            this.label5.Text = "Admin Mode";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
+            // 
+            // resultsListView
+            // 
+            this.resultsListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.movieTitleHeader,
+            this.directorFirstNameHeader,
+            this.directorLastNameHeader,
+            this.genreHeader,
+            this.minHeader,
+            this.maxHeader});
+            this.resultsListView.Location = new System.Drawing.Point(574, 33);
+            this.resultsListView.Name = "resultsListView";
+            this.resultsListView.Size = new System.Drawing.Size(416, 402);
+            this.resultsListView.TabIndex = 15;
+            this.resultsListView.UseCompatibleStateImageBehavior = false;
+            // 
+            // movieTitleHeader
+            // 
+            this.movieTitleHeader.Text = "Movie Title";
+            // 
+            // directorFirstNameHeader
+            // 
+            this.directorFirstNameHeader.Text = "Director First Name";
+            // 
+            // directorLastNameHeader
+            // 
+            this.directorLastNameHeader.Text = "Director Last Name";
+            // 
+            // genreHeader
+            // 
+            this.genreHeader.Text = "Genre";
+            // 
+            // minHeader
+            // 
+            this.minHeader.Text = "Minimum Rating";
+            // 
+            // maxHeader
+            // 
+            this.maxHeader.Text = "Max Rating";
+            // 
+            // searchButton
+            // 
+            this.searchButton.Location = new System.Drawing.Point(12, 299);
+            this.searchButton.Name = "searchButton";
+            this.searchButton.Size = new System.Drawing.Size(142, 40);
+            this.searchButton.TabIndex = 16;
+            this.searchButton.Text = "Search";
+            this.searchButton.UseVisualStyleBackColor = true;
+            this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
+            // 
+            // resetButton
+            // 
+            this.resetButton.Location = new System.Drawing.Point(202, 299);
+            this.resetButton.Name = "resetButton";
+            this.resetButton.Size = new System.Drawing.Size(142, 40);
+            this.resetButton.TabIndex = 17;
+            this.resetButton.Text = "Reset";
+            this.resetButton.UseVisualStyleBackColor = true;
+            this.resetButton.Click += new System.EventHandler(this.resetButton_Click);
             // 
             // ratingSelectionSlider
             // 
@@ -157,41 +233,14 @@
             this.ratingSelectionSlider.TabIndex = 13;
             this.ratingSelectionSlider.Value = 50;
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(0, 9);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(66, 13);
-            this.label5.TabIndex = 14;
-            this.label5.Text = "Admin Mode";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
-            // 
-            // listView1
-            // 
-            this.listView1.Location = new System.Drawing.Point(626, 33);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(364, 402);
-            this.listView1.TabIndex = 15;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            // 
-            // searchButton
-            // 
-            this.searchButton.Location = new System.Drawing.Point(41, 299);
-            this.searchButton.Name = "searchButton";
-            this.searchButton.Size = new System.Drawing.Size(256, 86);
-            this.searchButton.TabIndex = 16;
-            this.searchButton.Text = "Search";
-            this.searchButton.UseVisualStyleBackColor = true;
-            this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1014, 450);
+            this.Controls.Add(this.resetButton);
             this.Controls.Add(this.searchButton);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.resultsListView);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.ratingSelectionSlider);
             this.Controls.Add(this.labelHigherRating);
@@ -228,8 +277,15 @@
         private System.Windows.Forms.Label labelHigherRating;
         private SelectionRangeSlider ratingSelectionSlider;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView resultsListView;
         private System.Windows.Forms.Button searchButton;
+        private System.Windows.Forms.ColumnHeader movieTitleHeader;
+        private System.Windows.Forms.ColumnHeader directorFirstNameHeader;
+        private System.Windows.Forms.ColumnHeader directorLastNameHeader;
+        private System.Windows.Forms.ColumnHeader genreHeader;
+        private System.Windows.Forms.ColumnHeader minHeader;
+        private System.Windows.Forms.ColumnHeader maxHeader;
+        private System.Windows.Forms.Button resetButton;
     }
 }
 

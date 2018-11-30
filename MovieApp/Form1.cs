@@ -31,6 +31,7 @@ namespace MovieApp
         public Form1()
         {
             InitializeComponent();
+            resultsListView.View = View.Details;
             ratingSelectionSlider.SetLabels(labelLowerRating, labelHigherRating);
             connect = new SqlConnection();
             connect.ConnectionString = "Data Source = mssql.cs.ksu.edu;" +
@@ -71,6 +72,22 @@ namespace MovieApp
             {
                 genre = genreComboBox.Text;
             }
+            ListViewItem newItem = new ListViewItem(movieTitle);
+            newItem.SubItems.Add(directorFirstName);
+            newItem.SubItems.Add(directorLastName);
+            newItem.SubItems.Add(genre);
+            newItem.SubItems.Add(ratingMin.ToString());
+            newItem.SubItems.Add(ratingMax.ToString());
+            resultsListView.Items.Add(newItem);
+        }
+
+        private void resetButton_Click(object sender, EventArgs e)
+        {
+            ratingSelectionSlider.ResetLabelValues();
+            genreComboBox.Text = "";
+            directorFirstNameTextbox.Text = "";
+            directorLastNameTextBox.Text = "";
+            movieTitleTextBox.Text = "";
         }
     }
 }
