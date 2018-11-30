@@ -28,75 +28,75 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.Rating = new System.Windows.Forms.Label();
+            this.movieTitleTextBox = new System.Windows.Forms.TextBox();
+            this.movieTitleLabel = new System.Windows.Forms.Label();
+            this.directorLastNameTextBox = new System.Windows.Forms.TextBox();
+            this.directorFirstNameTextbox = new System.Windows.Forms.TextBox();
+            this.directorFirstNameLabel = new System.Windows.Forms.Label();
+            this.directorLastNameLabel = new System.Windows.Forms.Label();
+            this.genreComboBox = new System.Windows.Forms.ComboBox();
+            this.genreLabel = new System.Windows.Forms.Label();
+            this.ratingLabel = new System.Windows.Forms.Label();
             this.labelLowerRating = new System.Windows.Forms.Label();
             this.labelHigherRating = new System.Windows.Forms.Label();
-            this.selectionRangeSlider1 = new MovieApp.SelectionRangeSlider();
+            this.ratingSelectionSlider = new MovieApp.SelectionRangeSlider();
             this.label5 = new System.Windows.Forms.Label();
             this.listView1 = new System.Windows.Forms.ListView();
-            this.button1 = new System.Windows.Forms.Button();
+            this.searchButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // textBox1
+            // movieTitleTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(98, 75);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(136, 20);
-            this.textBox1.TabIndex = 0;
+            this.movieTitleTextBox.Location = new System.Drawing.Point(98, 75);
+            this.movieTitleTextBox.Name = "movieTitleTextBox";
+            this.movieTitleTextBox.Size = new System.Drawing.Size(136, 20);
+            this.movieTitleTextBox.TabIndex = 0;
             // 
-            // label1
+            // movieTitleLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(130, 46);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(66, 15);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Movie Title";
+            this.movieTitleLabel.AutoSize = true;
+            this.movieTitleLabel.Location = new System.Drawing.Point(130, 46);
+            this.movieTitleLabel.Name = "movieTitleLabel";
+            this.movieTitleLabel.Size = new System.Drawing.Size(59, 13);
+            this.movieTitleLabel.TabIndex = 1;
+            this.movieTitleLabel.Text = "Movie Title";
             // 
-            // textBox2
+            // directorLastNameTextBox
             // 
-            this.textBox2.Location = new System.Drawing.Point(180, 116);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(130, 20);
-            this.textBox2.TabIndex = 2;
+            this.directorLastNameTextBox.Location = new System.Drawing.Point(180, 116);
+            this.directorLastNameTextBox.Name = "directorLastNameTextBox";
+            this.directorLastNameTextBox.Size = new System.Drawing.Size(130, 20);
+            this.directorLastNameTextBox.TabIndex = 2;
             // 
-            // textBox3
+            // directorFirstNameTextbox
             // 
-            this.textBox3.Location = new System.Drawing.Point(12, 116);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(130, 20);
-            this.textBox3.TabIndex = 3;
+            this.directorFirstNameTextbox.Location = new System.Drawing.Point(12, 116);
+            this.directorFirstNameTextbox.Name = "directorFirstNameTextbox";
+            this.directorFirstNameTextbox.Size = new System.Drawing.Size(130, 20);
+            this.directorFirstNameTextbox.TabIndex = 3;
             // 
-            // label2
+            // directorFirstNameLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 98);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(113, 15);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Director First Name";
+            this.directorFirstNameLabel.AutoSize = true;
+            this.directorFirstNameLabel.Location = new System.Drawing.Point(12, 98);
+            this.directorFirstNameLabel.Name = "directorFirstNameLabel";
+            this.directorFirstNameLabel.Size = new System.Drawing.Size(97, 13);
+            this.directorFirstNameLabel.TabIndex = 4;
+            this.directorFirstNameLabel.Text = "Director First Name";
             // 
-            // label3
+            // directorLastNameLabel
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(177, 98);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(113, 15);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Director Last Name";
+            this.directorLastNameLabel.AutoSize = true;
+            this.directorLastNameLabel.Location = new System.Drawing.Point(177, 98);
+            this.directorLastNameLabel.Name = "directorLastNameLabel";
+            this.directorLastNameLabel.Size = new System.Drawing.Size(98, 13);
+            this.directorLastNameLabel.TabIndex = 5;
+            this.directorLastNameLabel.Text = "Director Last Name";
             // 
-            // comboBox1
+            // genreComboBox
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.genreComboBox.FormattingEnabled = true;
+            this.genreComboBox.Items.AddRange(new object[] {
             "Action",
             "Comedy",
             "Western",
@@ -104,35 +104,35 @@
             "Drama",
             "Rom-Com",
             "Musical"});
-            this.comboBox1.Location = new System.Drawing.Point(98, 172);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(136, 21);
-            this.comboBox1.TabIndex = 6;
+            this.genreComboBox.Location = new System.Drawing.Point(98, 172);
+            this.genreComboBox.Name = "genreComboBox";
+            this.genreComboBox.Size = new System.Drawing.Size(136, 21);
+            this.genreComboBox.TabIndex = 6;
             // 
-            // label4
+            // genreLabel
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(143, 154);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(41, 15);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Genre";
+            this.genreLabel.AutoSize = true;
+            this.genreLabel.Location = new System.Drawing.Point(143, 154);
+            this.genreLabel.Name = "genreLabel";
+            this.genreLabel.Size = new System.Drawing.Size(36, 13);
+            this.genreLabel.TabIndex = 7;
+            this.genreLabel.Text = "Genre";
             // 
-            // Rating
+            // ratingLabel
             // 
-            this.Rating.AutoSize = true;
-            this.Rating.Location = new System.Drawing.Point(141, 206);
-            this.Rating.Name = "Rating";
-            this.Rating.Size = new System.Drawing.Size(43, 15);
-            this.Rating.TabIndex = 10;
-            this.Rating.Text = "Rating";
+            this.ratingLabel.AutoSize = true;
+            this.ratingLabel.Location = new System.Drawing.Point(141, 206);
+            this.ratingLabel.Name = "ratingLabel";
+            this.ratingLabel.Size = new System.Drawing.Size(38, 13);
+            this.ratingLabel.TabIndex = 10;
+            this.ratingLabel.Text = "Rating";
             // 
             // labelLowerRating
             // 
             this.labelLowerRating.AutoSize = true;
             this.labelLowerRating.Location = new System.Drawing.Point(9, 224);
             this.labelLowerRating.Name = "labelLowerRating";
-            this.labelLowerRating.Size = new System.Drawing.Size(14, 15);
+            this.labelLowerRating.Size = new System.Drawing.Size(13, 13);
             this.labelLowerRating.TabIndex = 11;
             this.labelLowerRating.Text = "0";
             // 
@@ -141,28 +141,28 @@
             this.labelHigherRating.AutoSize = true;
             this.labelHigherRating.Location = new System.Drawing.Point(316, 224);
             this.labelHigherRating.Name = "labelHigherRating";
-            this.labelHigherRating.Size = new System.Drawing.Size(28, 15);
+            this.labelHigherRating.Size = new System.Drawing.Size(25, 13);
             this.labelHigherRating.TabIndex = 12;
             this.labelHigherRating.Text = "100";
             // 
-            // selectionRangeSlider1
+            // ratingSelectionSlider
             // 
-            this.selectionRangeSlider1.Location = new System.Drawing.Point(28, 224);
-            this.selectionRangeSlider1.Max = 100;
-            this.selectionRangeSlider1.Min = 0;
-            this.selectionRangeSlider1.Name = "selectionRangeSlider1";
-            this.selectionRangeSlider1.SelectedMax = 100;
-            this.selectionRangeSlider1.SelectedMin = 0;
-            this.selectionRangeSlider1.Size = new System.Drawing.Size(282, 19);
-            this.selectionRangeSlider1.TabIndex = 13;
-            this.selectionRangeSlider1.Value = 50;
+            this.ratingSelectionSlider.Location = new System.Drawing.Point(28, 224);
+            this.ratingSelectionSlider.Max = 100;
+            this.ratingSelectionSlider.Min = 0;
+            this.ratingSelectionSlider.Name = "ratingSelectionSlider";
+            this.ratingSelectionSlider.SelectedMax = 100;
+            this.ratingSelectionSlider.SelectedMin = 0;
+            this.ratingSelectionSlider.Size = new System.Drawing.Size(282, 19);
+            this.ratingSelectionSlider.TabIndex = 13;
+            this.ratingSelectionSlider.Value = 50;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(0, 9);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(77, 15);
+            this.label5.Size = new System.Drawing.Size(66, 13);
             this.label5.TabIndex = 14;
             this.label5.Text = "Admin Mode";
             this.label5.Click += new System.EventHandler(this.label5_Click);
@@ -175,35 +175,36 @@
             this.listView1.TabIndex = 15;
             this.listView1.UseCompatibleStateImageBehavior = false;
             // 
-            // button1
+            // searchButton
             // 
-            this.button1.Location = new System.Drawing.Point(34, 302);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(256, 106);
-            this.button1.TabIndex = 16;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.searchButton.Location = new System.Drawing.Point(41, 299);
+            this.searchButton.Name = "searchButton";
+            this.searchButton.Size = new System.Drawing.Size(256, 86);
+            this.searchButton.TabIndex = 16;
+            this.searchButton.Text = "Search";
+            this.searchButton.UseVisualStyleBackColor = true;
+            this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1014, 450);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.searchButton);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.selectionRangeSlider1);
+            this.Controls.Add(this.ratingSelectionSlider);
             this.Controls.Add(this.labelHigherRating);
             this.Controls.Add(this.labelLowerRating);
-            this.Controls.Add(this.Rating);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.ratingLabel);
+            this.Controls.Add(this.genreLabel);
+            this.Controls.Add(this.genreComboBox);
+            this.Controls.Add(this.directorLastNameLabel);
+            this.Controls.Add(this.directorFirstNameLabel);
+            this.Controls.Add(this.directorFirstNameTextbox);
+            this.Controls.Add(this.directorLastNameTextBox);
+            this.Controls.Add(this.movieTitleLabel);
+            this.Controls.Add(this.movieTitleTextBox);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -214,21 +215,21 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label Rating;
+        private System.Windows.Forms.TextBox movieTitleTextBox;
+        private System.Windows.Forms.Label movieTitleLabel;
+        private System.Windows.Forms.TextBox directorLastNameTextBox;
+        private System.Windows.Forms.TextBox directorFirstNameTextbox;
+        private System.Windows.Forms.Label directorFirstNameLabel;
+        private System.Windows.Forms.Label directorLastNameLabel;
+        private System.Windows.Forms.ComboBox genreComboBox;
+        private System.Windows.Forms.Label genreLabel;
+        private System.Windows.Forms.Label ratingLabel;
         private System.Windows.Forms.Label labelLowerRating;
         private System.Windows.Forms.Label labelHigherRating;
-        private SelectionRangeSlider selectionRangeSlider1;
+        private SelectionRangeSlider ratingSelectionSlider;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button searchButton;
     }
 }
 

@@ -15,12 +15,23 @@ namespace MovieApp
     {
         private static SqlConnection connect;
 
+        private string movieTitle;
+
+        private string directorFirstName;
+
+        private string directorLastName;
+
+        private string genre;
+
+        private int ratingMin;
+
+        private int ratingMax;
 
 
         public Form1()
         {
             InitializeComponent();
-            selectionRangeSlider1.SetLabels(labelLowerRating, labelHigherRating);
+            ratingSelectionSlider.SetLabels(labelLowerRating, labelHigherRating);
             connect = new SqlConnection();
             connect.ConnectionString = "Data Source = mssql.cs.ksu.edu;" +
                 "Initial Catalog=cis560_team16;" +
@@ -38,6 +49,28 @@ namespace MovieApp
             //Application.Run(new AdminDashboard());
             AdminDashboard admin = new AdminDashboard();
             admin.Show();
+        }
+
+        private void searchButton_Click(object sender, EventArgs e)
+        {
+            ratingMin = ratingSelectionSlider.SelectedMin;
+            ratingMax = ratingSelectionSlider.SelectedMax;
+            if (movieTitleTextBox.Text != "" || movieTitleTextBox.Text != " ")
+            {
+                movieTitle = movieTitleTextBox.Text;
+            }
+            if(directorFirstNameTextbox.Text != "" || directorFirstNameTextbox.Text != " ")
+            {
+                directorFirstName = directorFirstNameTextbox.Text;
+            }
+            if (directorLastNameTextBox.Text != "" || directorLastNameTextBox.Text != " ")
+            {
+                directorLastName = directorLastNameTextBox.Text;
+            }
+            if(genreComboBox.Text != "")
+            {
+                genre = genreComboBox.Text;
+            }
         }
     }
 }

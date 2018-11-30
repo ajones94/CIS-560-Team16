@@ -8,3 +8,4 @@
 \\files.cs.ksu.edu\ianriley97\Documents\CIS562\MovieApp\MovieApp\MovieApp\obj\Debug\MovieApp.exe
 \\files.cs.ksu.edu\ianriley97\Documents\CIS562\MovieApp\MovieApp\MovieApp\obj\Debug\MovieApp.pdb
 \\files.cs.ksu.edu\ianriley97\Documents\CIS562\MovieApp\MovieApp\MovieApp\obj\Debug\MovieApp.AdminDashboard.resources
+\\files.cs.ksu.edu\ianriley97\Documents\CIS562\MovieApp\MovieApp\MovieApp\obj\Debug\MovieApp.csprojAssemblyReference.cache

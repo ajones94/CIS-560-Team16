@@ -174,8 +174,16 @@ namespace MovieApp
                 SelectedMin = pointedValue;
             else if (movingMode == MovingMode.MovingMax)
                 SelectedMax = pointedValue;
-
+            //If the selected minimum is less than 0 set it back to 0 so we can drag it again.
+            if(this.SelectedMin < 0)
+            {
+                this.selectedMin = 0;
+            }
             lowerRatingLabel.Text = this.SelectedMin.ToString();
+            if(this.SelectedMax > 100)
+            {
+                this.SelectedMax = 100;
+            }
             higherRatingLabel.Text = this.SelectedMax.ToString();
         }
 
