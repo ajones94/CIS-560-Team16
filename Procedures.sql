@@ -1,6 +1,47 @@
+
+EXEC dbo.InsertMovie
+	@MovieID = 809453,
+	@Title = 'testTitle',
+	@Genre = 'testGenre',
+	@IMDBID = 70890,
+	@TMDBID =70894,
+	@UserID = 235549,
+	@Rating = 0,
+	@TimeStamp = 'stamp',
+	@Tag = 'testTag';
+	
+EXEC dbo.UpdateMovie
+	@MovieID = 809455,
+	@Title = 'testTitle1',
+	@Genre = 'testGenre1',
+	@IMDBID = 70892,
+	@TMDBID =70892,
+	@UserID = 235542,
+	@Rating = 1,
+	@TimeStamp = 'stamp1',
+	@Tag = 'testTag1';
+	
+EXEC dbo.DeleteMovie @MovieID = 809455; 
+
+EXEC dbo.TagSearch @Tag = 'testTag';
+
+EXEC dbo.RatingRangeSearch
+	@MinRating =2,
+	@MaxRating = 3;
+
+EXEC dbo.SpecificSearch
+	@Title ='testTitle',
+	@Tag = 'testTag',
+	@Genre = 'testGenre';
+
 /**************************************
  * Procedure for inserting a new movie
  **************************************/
+
+ --Tested, working
+
+DROP PROCEDURE IF EXISTS dbo.InsertMovie 
+GO
 
 CREATE PROCEDURE dbo.InsertMovie
    @MovieID INT,
@@ -10,34 +51,39 @@ CREATE PROCEDURE dbo.InsertMovie
    @TMDBID INT,
    @UserID INT,
    @Rating INT,
-   @TimeStamp DATETIMEOFFSET,
-   @Tag NVARCHAR(25),
-   @UpdatedOn DATETIMEOFFSET OUTPUT
+   @TimeStamp NVARCHAR(50),
+   @Tag NVARCHAR(25)--,
+   --@UpdatedOn DATETIMEOFFSET OUTPUT
 AS
 
-INSERT dbo.Movies(MovieID, Title, Genre, UpdatedOn)
-VALUES(@MovieID, @Title, @Genre, @UpdatedOn);
+INSERT dbo.Movies(MovieID, Tile, Genres)
+VALUES(@MovieID, @Title, @Genre);
 
-SET @UpdatedOn =
+/*SET @UpdatedOn =
    (
       SELECT M.UpdatedOn
       FROM dbo.Movies M
       WHERE M.MovieID = @MovieID
-   );
+   );*/
 
 INSERT dbo.Links(MovieID, IMDBID, TMDBID)
 VALUES(@MovieID, @IMDBID, @TMDBID);
 
-INSERT dbo.Ratings(MovieID, UserID, Rating, TimeStamp)
+INSERT dbo.Ratings(MovieID, UserID, Rating, [TimeStamp])
 VALUES(@MovieID, @UserID, @Rating, @TimeStamp);
 
-INSERT dbo.Tags(MovieID, UserID, TimeStamp, Tag)
+INSERT dbo.Tags(MovieID, UserID, [TimeStamp], Tag)
 VALUES(@MovieID, @UserID, @TimeStamp, @Tag);
 GO
 
 /**************************************
  * Procedure for updating a movie entry
  **************************************/
+
+ --Updates all entries in database ¯\_(ツ)_/¯
+
+DROP PROCEDURE IF EXISTS dbo.UpdateMovie 
+GO
 
 CREATE PROCEDURE dbo.UpdateMovie
    @MovieID INT,
@@ -47,17 +93,17 @@ CREATE PROCEDURE dbo.UpdateMovie
    @TMDBID INT,
    @UserID INT,
    @Rating INT,
-   @TimeStamp DATETIMEOFFSET,
-   @Tag NVARCHAR(25),
-   @UpdatedOn DATETIMEOFFSET OUTPUT
+   @TimeStamp NVARCHAR(50),
+   @Tag NVARCHAR(25)--,
+   --@UpdatedOn DATETIMEOFFSET OUTPUT
 AS
 
 UPDATE dbo.Movies
 SET
 	MovieID = CASE WHEN @MovieID IS NOT NULL THEN @MovieID ELSE MovieID END,
-	Title = CASE WHEN @Title IS NOT NULL THEN @Title ELSE Title END,
-	Genre = CASE WHEN @Genre IS NOT NULL THEN @Genre ELSE Genre END,
-	UpdatedOn = SYSDATETIMEOFFSET();
+	Tile = CASE WHEN @Title IS NOT NULL THEN @Title ELSE Tile END,
+	Genres = CASE WHEN @Genre IS NOT NULL THEN @Genre ELSE Genres END;--,
+	--UpdatedOn = SYSDATETIMEOFFSET();
 
 UPDATE dbo.Links
 SET
@@ -84,6 +130,11 @@ GO
  * Procedure for deleting a movie entry
  **************************************/
 
+ --Deletes all entries in database ¯\_(ツ)_/¯
+
+DROP PROCEDURE IF EXISTS dbo.DeleteMovie 
+GO
+
 CREATE PROCEDURE dbo.DeleteMovie
    @MovieID INT
 AS
@@ -105,8 +156,13 @@ GO
  * Tag Only Search Procedure
  **************************************/
 
+--Tested, working
+
+DROP PROCEDURE IF EXISTS dbo.TagSearch
+GO
+
 CREATE PROCEDURE dbo.TagSearch
-   @Tag NVARCHAR(25)
+   @Tag NVARCHAR(500)
 AS
 
 SELECT *
@@ -114,9 +170,36 @@ FROM dbo.Tags T
 WHERE T.Tag = @Tag;
 GO
 
+/**************************************
+ * Rating Range Search Procedure
+ **************************************/
+
+--Untested
+
+DROP PROCEDURE IF EXISTS dbo.RatingRangeSearch
+GO
+
+CREATE PROCEDURE dbo.RatingRangeSearch
+   @MinRating INT,
+   @MaxRating INT
+AS
+
+SELECT *
+FROM dbo.Ratings R
+	INNER JOIN dbo.Tags T ON T.MovieID = R.MovieID
+	INNER JOIN dbo.Links L ON L.MovieID = R.MovieID
+	INNER JOIN dbo.Movies M ON M.MovieID = R.MovieID
+WHERE R.Rating BETWEEN @MinRating AND @MaxRating;
+GO
+
  /**************************************************
  * Specific Search Procedure using Title, Tag, Genre
  ***************************************************/
+
+ --Only works with all variables filled, incorrect joins, too tired to fix now
+
+DROP PROCEDURE IF EXISTS dbo.SpecificSearch 
+GO
 
 CREATE PROCEDURE dbo.SpecificSearch
 
@@ -135,7 +218,7 @@ BEGIN
 			INNER JOIN dbo.Links L ON L.MovieID = M.MovieID
 			INNER JOIN dbo.Ratings R ON R.MovieID = M.MovieID
         WHERE
-            M.Title = @Title
+            M.Tile = @Title
 
     ELSE IF (@Title IS NULL AND @Tag IS NOT NULL AND @Genre IS NULL)
         -- Search by tag only
@@ -155,7 +238,7 @@ BEGIN
 			INNER JOIN dbo.Links L ON L.MovieID = M.MovieID
 			INNER JOIN dbo.Ratings R ON R.MovieID = M.MovieID
         WHERE
-            Genre = @Genre
+            Genres = @Genre
 
     ELSE IF (@Title IS NOT NULL AND @Tag IS NOT NULL AND @Genre IS NULL)
         -- Search by title and tag
@@ -165,7 +248,7 @@ BEGIN
 			INNER JOIN dbo.Links L ON L.MovieID = M.MovieID
 			INNER JOIN dbo.Ratings R ON R.MovieID = M.MovieID
         WHERE
-            Title = @Title
+            Tile = @Title
             AND Tag = @Tag
 
     ELSE
@@ -176,9 +259,9 @@ BEGIN
 			INNER JOIN dbo.Links L ON L.MovieID = M.MovieID
 			INNER JOIN dbo.Ratings R ON R.MovieID = M.MovieID
         WHERE
-                (@Title IS NULL OR (Title = @Title))
+                (@Title IS NULL OR (Tile = @Title))
             AND (@Tag IS NULL OR (Tag  = @Tag))
-            AND (@Genre IS NULL OR (Genre = @Genre))
+            AND (@Genre IS NULL OR (Genres = @Genre))
 END
 GO
 
@@ -186,6 +269,11 @@ GO
  * General Search Procedure using any string
  * https://www.mssqltips.com/sqlservertip/1522/searching-and-finding-a-string-value-in-all-columns-in-a-sql-server-table/
  *******************************************/
+
+--Untested
+
+DROP PROCEDURE IF EXISTS dbo.GeneralSearch 
+GO
 
 CREATE PROCEDURE dbo.GeneralSearch 
  
@@ -211,3 +299,4 @@ BEGIN CATCH
    PRINT 'There was an error. Check to make sure object exists.'
    PRINT error_message()
 END CATCH 
+GO
