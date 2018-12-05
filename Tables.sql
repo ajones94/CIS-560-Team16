@@ -25,7 +25,7 @@ CREATE TABLE GP.Movie
    UNIQUE
    (
       Title ASC,
-	   IMDBID ASC,
+	  IMDBID ASC,
 	  GenreID ASC,
 	  DirectorID ASC
    )
@@ -39,6 +39,11 @@ CREATE TABLE GP.Rating
 	MovieID INT NOT NULL FOREIGN KEY
 		REFERENCES GP.Movie(MovieID),
 	--DateUpdated DATETIMEOFFSET NOT NULL DEFAULT(SYSDATETIMEOFFSET())
+
+	PRIMARY KEY
+   (
+		MovieID
+   )
 );
 GO
 
@@ -70,7 +75,12 @@ CREATE TABLE GP.[Language]
 	--NEEDS PRIMARY KEY
 	MovieID INT NOT NULL FOREIGN KEY
 		REFERENCES GP.Movie(MovieID),
-	OriginalLanguage NVARCHAR(2) NOT NULL
+	OriginalLanguage NVARCHAR(2) NOT NULL,
 	--DateUpdated DATETIMEOFFSET NOT NULL DEFAULT(SYSDATETIMEOFFSET())
+
+	PRIMARY KEY
+   (
+		MovieID
+   )
 );
 GO
