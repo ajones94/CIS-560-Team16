@@ -5,7 +5,6 @@
 --drop table GP.[Language]
 --drop table GP.Director
 
---Question 1
 CREATE TABLE GP.Movie
 (
    MovieID INT NOT NULL IDENTITY(1, 1) PRIMARY KEY,
