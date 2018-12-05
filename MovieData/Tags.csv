@@ -1,4 +1,4 @@
-userId,movieId,tag,timestamp
+UserID,MovieID,Tag,Timestamp
 2,60756,funny,1445714994
 2,60756,Highly quotable,1445714996
 2,60756,will ferrell,1445714992
@@ -484,11 +484,11 @@ userId,movieId,tag,timestamp
 132,6367,Renee Zellweger,1161799951
 138,59103,jackie chan,1222676394
 138,59103,kung fu,1222676405
-161,52287,Something for everyone in this one... saw it without and plan on seeing it with kids!,1176498861
+161,52287,Something for everyone in this one saw it without and plan on seeing it with kids!,1176498861
 166,293,assassin,1188774484
 166,293,Jean Reno,1188774487
 166,54286,assassin,1188774519
-166,54286,assassin-in-training (scene),1188774517
+166,54286,assassin-in-training scene,1188774517
 166,54286,espionage,1188774515
 166,54286,Robert Ludlum,1188774524
 167,104,test tag,1154718872
@@ -620,7 +620,7 @@ userId,movieId,tag,timestamp
 318,127172,representation of children,1423222565
 319,364,Disney,1461351898
 319,364,Disney animated feature,1461351908
-319,364,Oscar (Best Music - Original Score),1461351919
+319,364,Oscar Best Music - Original Score,1461351919
 327,1288,music,1234790068
 327,1923,Ben Stiller,1234789755
 327,2616,comic book,1234789098
