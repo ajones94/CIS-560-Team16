@@ -1,8 +1,9 @@
+--DROP SCHEMA IF EXISTS GP;
 --CREATE SCHEMA GP;
---drop table GP.Movie
---drop table GP.Links
---drop table GP.Tags
---drop table GP.Ratings
+--drop table IF EXISTS GP.Movie
+--drop table IF EXISTS GP.Links
+--drop table IF EXISTS GP.Tags
+--drop table IF EXISTS GP.Ratings
 
 CREATE TABLE GP.Movie
 (
