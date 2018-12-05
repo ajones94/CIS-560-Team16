@@ -50,11 +50,16 @@
             this.searchButton = new System.Windows.Forms.Button();
             this.resetButton = new System.Windows.Forms.Button();
             this.ratingSelectionSlider = new MovieApp.SelectionRangeSlider();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.languageLabel = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // movieTitleTextBox
             // 
-            this.movieTitleTextBox.Location = new System.Drawing.Point(98, 75);
+            this.movieTitleTextBox.Location = new System.Drawing.Point(12, 64);
             this.movieTitleTextBox.Name = "movieTitleTextBox";
             this.movieTitleTextBox.Size = new System.Drawing.Size(136, 20);
             this.movieTitleTextBox.TabIndex = 0;
@@ -62,7 +67,7 @@
             // movieTitleLabel
             // 
             this.movieTitleLabel.AutoSize = true;
-            this.movieTitleLabel.Location = new System.Drawing.Point(130, 46);
+            this.movieTitleLabel.Location = new System.Drawing.Point(46, 46);
             this.movieTitleLabel.Name = "movieTitleLabel";
             this.movieTitleLabel.Size = new System.Drawing.Size(66, 15);
             this.movieTitleLabel.TabIndex = 1;
@@ -111,7 +116,7 @@
             "Drama",
             "Rom-Com",
             "Musical"});
-            this.genreComboBox.Location = new System.Drawing.Point(98, 172);
+            this.genreComboBox.Location = new System.Drawing.Point(174, 63);
             this.genreComboBox.Name = "genreComboBox";
             this.genreComboBox.Size = new System.Drawing.Size(136, 21);
             this.genreComboBox.TabIndex = 6;
@@ -119,7 +124,7 @@
             // genreLabel
             // 
             this.genreLabel.AutoSize = true;
-            this.genreLabel.Location = new System.Drawing.Point(143, 154);
+            this.genreLabel.Location = new System.Drawing.Point(226, 46);
             this.genreLabel.Name = "genreLabel";
             this.genreLabel.Size = new System.Drawing.Size(41, 15);
             this.genreLabel.TabIndex = 7;
@@ -233,11 +238,48 @@
             this.ratingSelectionSlider.TabIndex = 13;
             this.ratingSelectionSlider.Value = 50;
             // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Location = new System.Drawing.Point(15, 172);
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
+            this.numericUpDown1.TabIndex = 18;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(174, 172);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(136, 21);
+            this.comboBox1.TabIndex = 19;
+            // 
+            // languageLabel
+            // 
+            this.languageLabel.AutoSize = true;
+            this.languageLabel.Location = new System.Drawing.Point(215, 154);
+            this.languageLabel.Name = "languageLabel";
+            this.languageLabel.Size = new System.Drawing.Size(63, 15);
+            this.languageLabel.TabIndex = 20;
+            this.languageLabel.Text = "Language";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(37, 152);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(61, 15);
+            this.label1.TabIndex = 21;
+            this.label1.Text = "Popularity";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1014, 450);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.languageLabel);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.resetButton);
             this.Controls.Add(this.searchButton);
             this.Controls.Add(this.resultsListView);
@@ -257,6 +299,7 @@
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -286,6 +329,10 @@
         private System.Windows.Forms.ColumnHeader minHeader;
         private System.Windows.Forms.ColumnHeader maxHeader;
         private System.Windows.Forms.Button resetButton;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label languageLabel;
+        private System.Windows.Forms.Label label1;
     }
 }
 
