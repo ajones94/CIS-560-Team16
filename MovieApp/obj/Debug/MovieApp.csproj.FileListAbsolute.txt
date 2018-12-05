@@ -9,3 +9,13 @@
 \\files.cs.ksu.edu\ianriley97\Documents\CIS562\MovieApp\MovieApp\MovieApp\obj\Debug\MovieApp.pdb
 \\files.cs.ksu.edu\ianriley97\Documents\CIS562\MovieApp\MovieApp\MovieApp\obj\Debug\MovieApp.AdminDashboard.resources
 \\files.cs.ksu.edu\ianriley97\Documents\CIS562\MovieApp\MovieApp\MovieApp\obj\Debug\MovieApp.csprojAssemblyReference.cache
+D:\Sync\College\CIS 562\Project\CIS-560-Team16\MovieApp\bin\Debug\MovieApp.exe.config
+D:\Sync\College\CIS 562\Project\CIS-560-Team16\MovieApp\bin\Debug\MovieApp.exe
+D:\Sync\College\CIS 562\Project\CIS-560-Team16\MovieApp\bin\Debug\MovieApp.pdb
+D:\Sync\College\CIS 562\Project\CIS-560-Team16\MovieApp\obj\Debug\MovieApp.AdminDashboard.resources
+D:\Sync\College\CIS 562\Project\CIS-560-Team16\MovieApp\obj\Debug\MovieApp.Form1.resources
+D:\Sync\College\CIS 562\Project\CIS-560-Team16\MovieApp\obj\Debug\MovieApp.Properties.Resources.resources
+D:\Sync\College\CIS 562\Project\CIS-560-Team16\MovieApp\obj\Debug\MovieApp.csproj.GenerateResource.Cache
+D:\Sync\College\CIS 562\Project\CIS-560-Team16\MovieApp\obj\Debug\MovieApp.csproj.CoreCompileInputs.cache
+D:\Sync\College\CIS 562\Project\CIS-560-Team16\MovieApp\obj\Debug\MovieApp.exe
+D:\Sync\College\CIS 562\Project\CIS-560-Team16\MovieApp\obj\Debug\MovieApp.pdb
