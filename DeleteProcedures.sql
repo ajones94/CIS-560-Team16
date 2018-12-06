@@ -3,7 +3,7 @@ CREATE PROCEDURE GP.DeleteMovie
 	@MovieID INT
 AS
 BEGIN
-	DELETE FROM GP.Movies WHERE Title = @MovieTile OR MovieID = @MovieID
+	DELETE FROM GP.Movies WHERE Title = @MovieTitle OR MovieID = @MovieID
 END
 
 go
@@ -35,7 +35,7 @@ CREATE PROCEDURE GP.DeleteRating
 	@MovieID INT
 AS
 BEGIN
-	DELETE FROM GP.Rating WHERE RatingID = @RatingID OR IMDBRating = @IMDBRating OR MovieID = @MovieID
+	DELETE FROM GP.Rating WHERE RatingID = @RatingID OR IMDBscore = @IMDBRating OR MovieID = @MovieID
 END
 
 GO
@@ -62,5 +62,8 @@ CREATE PROCEDURE GP.DeleteAditionalInfo
 	@InfoID INT
 AS
 BEGIN
-	DELETE FROM Gp.AditionalInfo WHERE InfoID = @InfoID
+	DELETE FROM GP.AdditionalInfo WHERE InfoID = @InfoID
 END
+
+GO
+SELECT * FROM GP.Movies
