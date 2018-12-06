@@ -26,9 +26,18 @@ namespace DatabaseParser
             foreach (string fileName in callLogFiles)
             {
                 DataWorker callLogWorker = new DataWorker(fileName);
-                DataTable dataFromCSV = callLogWorker.GetDataTableFromCSVFile();
+                callLogWorker.GetDataTableFromCSVFile();
+
+                //DataTable dataFromCSV = callLogWorker.GetDataTableFromCSVFile();
                 SQLWriter databaseWorker = new SQLWriter();
-                databaseWorker.WriteSQLDataToServer(dataFromCSV);
+                databaseWorker.WriteToMovies(callLogWorker.movieTable);
+                databaseWorker.WriteToDirector(callLogWorker.directorTable);
+                databaseWorker.WriteToFinancial(callLogWorker.financialTable);
+                databaseWorker.WriteToGenre(callLogWorker.genreTable);
+                databaseWorker.WriteToRegion(callLogWorker.regionTable);
+                databaseWorker.WriteToRating(callLogWorker.ratingTable);
+                databaseWorker.WriteToAdditionalInfo(callLogWorker.randomTable);
+                //databaseWorker.WriteSQLDataToServer(dataFromCSV);
             }
             //deleteFiles(); I believe that the Five9 will overwrite the file so this is uneeded.
         }
@@ -49,11 +58,11 @@ namespace DatabaseParser
         /// </summary>
         private void GetFiles()
         {
-            string partialName = "Call_Log";
+            string partialName = "movie_metadata";
             //callLogFiles = Directory.GetFiles(@"C:\Users\iriley.adm\Downloads\Five9DatabaseWCD\CSVFiles", "*" + partialName + "*.*");
             try
             {
-                callLogFiles = Directory.GetFiles(@"\\COUKAP01\Recordings\reports", "*" + partialName + "*.*");
+                callLogFiles = Directory.GetFiles(@"U:\Documents\CIS562\MovieApp\MovieApp", "*" + partialName + "*.*");
                 //callLogFiles = Directory.GetFiles(@"C:\\Users\iriley.adm\Downloads\Five9DatabaseWCD\CSVFiles", "*" + partialName + "*.*");
             }
             catch (Exception ex)

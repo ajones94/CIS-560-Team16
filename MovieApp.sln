@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28010.2003
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieApp", "MovieApp\MovieApp.csproj", "{51C49DED-80EA-4CA1-A593-7F9DB480D20D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseParser", "DatabaseParser\DatabaseParser.csproj", "{8C0A7BC6-8E85-4403-BDF1-947F139C8BAE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseParser", "DatabaseParserNew\DatabaseParser.csproj", "{E5DB047F-5D41-4CF9-AE2C-071F515CC25D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{51C49DED-80EA-4CA1-A593-7F9DB480D20D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{51C49DED-80EA-4CA1-A593-7F9DB480D20D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{51C49DED-80EA-4CA1-A593-7F9DB480D20D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8C0A7BC6-8E85-4403-BDF1-947F139C8BAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8C0A7BC6-8E85-4403-BDF1-947F139C8BAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8C0A7BC6-8E85-4403-BDF1-947F139C8BAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8C0A7BC6-8E85-4403-BDF1-947F139C8BAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5DB047F-5D41-4CF9-AE2C-071F515CC25D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5DB047F-5D41-4CF9-AE2C-071F515CC25D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5DB047F-5D41-4CF9-AE2C-071F515CC25D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5DB047F-5D41-4CF9-AE2C-071F515CC25D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
