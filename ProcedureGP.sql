@@ -1,6 +1,4 @@
 
---EXEC GP.InsertMovie
-
 -----------------------------------------------------INSERT-----------------------------------------------------------------
 
 /**************************************
@@ -11,24 +9,15 @@ DROP PROCEDURE IF EXISTS GP.InsertMovie
 GO
 
 CREATE PROCEDURE GP.InsertMovie
-   @MovieID INT,
    @Title NVARCHAR(50),
    @Year INT,
    @RunTime INT,
-   @ContentRating NVARCHAR(10),
-   @CreateddOn DATETIMEOFFSET OUTPUT,
-   @UpdatedOn DATETIMEOFFSET OUTPUT
+   @ContentRating NVARCHAR(10)
 AS
 
 INSERT GP.Movies(Title, Year, RunTime, ContentRating)
 VALUES(@Title, @Year, @RunTime, @ContentRating);
 
-SET @UpdatedOn =
-   (
-      SELECT M.UpdatedOn
-      FROM GP.Movies M
-      WHERE M.MovieID = @MovieID
-   );
 GO
 
 /**************************************
@@ -39,22 +28,12 @@ DROP PROCEDURE IF EXISTS GP.InsertRating
 GO
 
 CREATE PROCEDURE GP.InsertRating
-	@RatingID INT,
 	@IMDBscore INT,
-	@VotesCount INT,
-	@CreateddOn DATETIMEOFFSET OUTPUT,
-    @UpdatedOn DATETIMEOFFSET OUTPUT
+	@VotesCount INT
 AS
 
 INSERT GP.Rating(IMDBscore, VotesCount)
 VALUES(@IMDBscore, @VotesCount);
-
-SET @UpdatedOn =
-   (
-      SELECT R.UpdatedOn
-      FROM GP.Rating R
-      WHERE R.RatingID = @RatingID
-   );
 GO
 
 /**************************************
@@ -65,22 +44,12 @@ DROP PROCEDURE IF EXISTS GP.InsertDirector
 GO
 
 CREATE PROCEDURE GP.InsertDirector
-	@DirectorID INT,
 	@FirstName NVARCHAR(20),
-	@LastName NVARCHAR(20),
-	@CreateddOn DATETIMEOFFSET OUTPUT,
-    @UpdatedOn DATETIMEOFFSET OUTPUT
+	@LastName NVARCHAR(20)
 AS
 
 INSERT GP.Director(FirstName, LastName)
 VALUES(@FirstName, @LastName);
-
-SET @UpdatedOn =
-   (
-      SELECT D.UpdatedOn
-      FROM GP.Director D
-      WHERE D.DirectorID = @DirectorID
-   );
 GO
 
 
@@ -92,22 +61,12 @@ DROP PROCEDURE IF EXISTS GP.InsertActor
 GO
 
 CREATE PROCEDURE GP.InsertActor
-	@ActorID INT,
 	@FirstName NVARCHAR(20),
-	@LastName NVARCHAR(20),
-	@CreateddOn DATETIMEOFFSET OUTPUT,
-    @UpdatedOn DATETIMEOFFSET OUTPUT
+	@LastName NVARCHAR(20)
 AS
 
 INSERT GP.Actor(FirstName, LastName)
 VALUES(@FirstName, @LastName);
-
-SET @UpdatedOn =
-   (
-      SELECT A.UpdatedOn
-      FROM GP.Actor A
-      WHERE A.DirectorID = @ActorID
-   );
 GO
 
 /**************************************
@@ -118,21 +77,11 @@ DROP PROCEDURE IF EXISTS GP.InsertGenre
 GO
 
 CREATE PROCEDURE GP.InsertGenre
-	@GenreID INT,
-	@Genre NVARCHAR(15),
-	@CreateddOn DATETIMEOFFSET OUTPUT,
-    @UpdatedOn DATETIMEOFFSET OUTPUT
+	@Genre NVARCHAR(15)
 AS
 
 INSERT GP.Genre(Genre)
 VALUES(@Genre);
-
-SET @UpdatedOn =
-   (
-      SELECT G.UpdatedOn
-      FROM GP.Genre G
-      WHERE G.GenreID = @GenreID
-   );
 GO
 
 /**************************************
@@ -143,22 +92,12 @@ DROP PROCEDURE IF EXISTS GP.InsertFinancial
 GO
 
 CREATE PROCEDURE GP.InsertFinancial
-	@FinancialID INT,
 	@Budget INT,
-	@Gross INT,
-	@CreateddOn DATETIMEOFFSET OUTPUT,
-    @UpdatedOn DATETIMEOFFSET OUTPUT
+	@Gross INT
 AS
 
 INSERT GP.Financial(Budget, Gross)
 VALUES(@Budget, @Gross);
-
-SET @UpdatedOn =
-   (
-      SELECT F.UpdatedOn
-      FROM GP.Financial F
-      WHERE F.FinancialID = @FinancialID
-   );
 GO
 
 /**************************************
@@ -169,22 +108,12 @@ DROP PROCEDURE IF EXISTS GP.InsertRegion
 GO
 
 CREATE PROCEDURE GP.InsertRegion
-	@RegionID INT,
 	@Country NVARCHAR(25),
-	@Language NVARCHAR(25),
-	@CreateddOn DATETIMEOFFSET OUTPUT,
-    @UpdatedOn DATETIMEOFFSET OUTPUT
+	@Language NVARCHAR(25)
 AS
 
 INSERT GP.Region(Country, Language)
 VALUES(@country, @Language);
-
-SET @UpdatedOn =
-   (
-      SELECT R.UpdatedOn
-      FROM GP.Region R
-      WHERE R.RegionID = @RegionID
-   );
 GO
 
 /**************************************
@@ -195,23 +124,13 @@ DROP PROCEDURE IF EXISTS GP.InsertAdditionalInfo
 GO
 
 CREATE PROCEDURE GP.InsertAdditionalInfo
-	@InfoID INT,
 	@MovieLink NVARCHAR(100),
 	@AspectRatio NVARCHAR(10),
-	@Color NVARCHAR(10),
-	@CreateddOn DATETIMEOFFSET OUTPUT,
-    @UpdatedOn DATETIMEOFFSET OUTPUT
+	@Color NVARCHAR(10)
 AS
 
 INSERT GP.AdditionalInfo(MovieLink, AspectRatio, Color)
 VALUES(@MovieLink, @AspectRatio, @Color);
-
-SET @UpdatedOn =
-   (
-      SELECT I.UpdatedOn
-      FROM GP.AdditionalInfo I
-      WHERE I.InfoID = @InfoID
-   );
 GO
 
 -----------------------------------------------------UPDATE-----------------------------------------------------------------
