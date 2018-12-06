@@ -502,7 +502,7 @@ AS
 
 SELECT *
 FROM GP.Movies M
-WHERE M.Title = @Title;
+WHERE CONTAINS(M.Title, @Title);
 GO
 
 /**************************************
@@ -518,7 +518,7 @@ AS
 
 SELECT *
 FROM GP.Actor A
-WHERE A.FirstName = @Name OR A.LastName = @Name;
+WHERE CONTAINS(A.FirstName, @Name) AND CONTAINS (A.LastName, @Name);
 GO
 
 /**************************************
@@ -534,7 +534,7 @@ AS
 
 SELECT *
 FROM GP.Director D
-WHERE D.FirstName = @Name OR D.LastName = @Name;
+WHERE CONTAINS(D.FirstName, @Name) AND CONTAINS (D.LastName, @Name);
 GO
 
 /**************************************
