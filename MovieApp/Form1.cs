@@ -27,11 +27,39 @@ namespace MovieApp
 
         private int ratingMax;
 
+        private bool advancedSearch;
+
 
         public Form1()
         {
             InitializeComponent();
             resultsListView.View = View.Details;
+            advancedSearch = false;
+
+
+            this.Size = new System.Drawing.Size(838, 427);
+            this.resultsListView.Location = new Point(373, 12);
+
+            this.popularityLabel.Visible = false;
+            this.popularityNumericUpDown.Visible = false;
+            this.languageLabel.Visible = false;
+            this.languageComboBox.Visible = false;
+            this.budgetLabel.Visible = false;
+            this.budgetNumericUpDown.Visible = false;
+            this.grossLabel.Visible = false;
+            this.grossNumbericUpdown.Visible = false;
+            this.colorLabel.Visible = false;
+            this.colorComboBox.Visible = false;
+            this.countryLabel.Visible = false;
+            this.countryComboBox.Visible = false;
+            this.aspectRatioLabel.Visible = false;
+            this.AspectRatioComboBox.Visible = false;
+
+
+
+
+
+
             ratingSelectionSlider.SetLabels(labelLowerRating, labelHigherRating);
             connect = new SqlConnection();
             connect.ConnectionString = "Data Source = mssql.cs.ksu.edu;" +
@@ -88,6 +116,58 @@ namespace MovieApp
             directorFirstNameTextbox.Text = "";
             directorLastNameTextBox.Text = "";
             movieTitleTextBox.Text = "";
+            directorFirstNameTextbox.Text = "";
+            directorLastNameTextBox.Text = "";
+            popularityNumericUpDown.Value = 0;
+            budgetNumericUpDown.Value = 0;
+            grossNumbericUpdown.Value = 0;
+            colorComboBox.Text = "";
+            countryComboBox.Text = "";
+            AspectRatioComboBox.Text = "";
+        }
+
+        private void advancedSearchLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if(advancedSearch == false)
+            {
+                this.Size = new System.Drawing.Size(1113, 427);
+                this.resultsListView.Location = new Point(655, 12);
+                this.popularityLabel.Visible = true;
+                this.popularityNumericUpDown.Visible = true;
+                this.languageLabel.Visible = true;
+                this.languageComboBox.Visible = true;
+                this.budgetLabel.Visible = true;
+                this.budgetNumericUpDown.Visible = true;
+                this.grossLabel.Visible = true;
+                this.grossNumbericUpdown.Visible = true;
+                this.colorLabel.Visible = true;
+                this.colorComboBox.Visible = true;
+                this.countryLabel.Visible = true;
+                this.countryComboBox.Visible = true;
+                this.aspectRatioLabel.Visible = true;
+                this.AspectRatioComboBox.Visible = true;
+                advancedSearch = true;
+            }
+            else if (advancedSearch == true)
+            {
+                this.Size = new System.Drawing.Size(838, 427);
+                this.resultsListView.Location = new Point(373, 12);
+                this.popularityLabel.Visible = false;
+                this.popularityNumericUpDown.Visible = false;
+                this.languageLabel.Visible = false;
+                this.languageComboBox.Visible = false;
+                this.budgetLabel.Visible = false;
+                this.budgetNumericUpDown.Visible = false;
+                this.grossLabel.Visible = false;
+                this.grossNumbericUpdown.Visible = false;
+                this.colorLabel.Visible = false;
+                this.colorComboBox.Visible = false;
+                this.countryLabel.Visible = false;
+                this.countryComboBox.Visible = false;
+                this.aspectRatioLabel.Visible = false;
+                this.AspectRatioComboBox.Visible = false;
+                advancedSearch = false;
+            }
         }
     }
 }

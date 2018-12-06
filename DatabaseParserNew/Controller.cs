@@ -32,6 +32,7 @@ namespace DatabaseParser
                 SQLWriter databaseWorker = new SQLWriter();
                 databaseWorker.WriteToMovies(callLogWorker.movieTable);
                 databaseWorker.WriteToDirector(callLogWorker.directorTable);
+                databaseWorker.WriteToActor(callLogWorker.actorTable);
                 databaseWorker.WriteToFinancial(callLogWorker.financialTable);
                 databaseWorker.WriteToGenre(callLogWorker.genreTable);
                 databaseWorker.WriteToRegion(callLogWorker.regionTable);
