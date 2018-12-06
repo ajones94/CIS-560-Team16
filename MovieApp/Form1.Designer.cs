@@ -53,8 +53,8 @@
             this.languageComboBox = new System.Windows.Forms.ComboBox();
             this.languageLabel = new System.Windows.Forms.Label();
             this.popularityLabel = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.actorFirstNameTextBox = new System.Windows.Forms.TextBox();
+            this.actorLastNameTextBox = new System.Windows.Forms.TextBox();
             this.labelActorFirstName = new System.Windows.Forms.Label();
             this.actorlastNameLabel = new System.Windows.Forms.Label();
             this.advancedSearchLinkLabel = new System.Windows.Forms.LinkLabel();
@@ -68,6 +68,14 @@
             this.colorLabel = new System.Windows.Forms.Label();
             this.AspectRatioComboBox = new System.Windows.Forms.ComboBox();
             this.aspectRatioLabel = new System.Windows.Forms.Label();
+            this.actor2LastNameTextBox = new System.Windows.Forms.TextBox();
+            this.actor2FirstNameTextBox = new System.Windows.Forms.TextBox();
+            this.actor2LastNameLabel = new System.Windows.Forms.Label();
+            this.actor2FirstNameLabel = new System.Windows.Forms.Label();
+            this.actor3FirstNameTextBox = new System.Windows.Forms.TextBox();
+            this.actor3LastNameTextBox = new System.Windows.Forms.TextBox();
+            this.actor3FirstNameLabel = new System.Windows.Forms.Label();
+            this.actor3LastNameLabel = new System.Windows.Forms.Label();
             this.ratingSelectionSlider = new MovieApp.SelectionRangeSlider();
             ((System.ComponentModel.ISupportInitialize)(this.popularityNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.budgetNumericUpDown)).BeginInit();
@@ -339,19 +347,19 @@
             this.popularityLabel.TabIndex = 21;
             this.popularityLabel.Text = "Popularity";
             // 
-            // textBox1
+            // actorFirstNameTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 108);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 22;
+            this.actorFirstNameTextBox.Location = new System.Drawing.Point(12, 108);
+            this.actorFirstNameTextBox.Name = "actorFirstNameTextBox";
+            this.actorFirstNameTextBox.Size = new System.Drawing.Size(136, 20);
+            this.actorFirstNameTextBox.TabIndex = 22;
             // 
-            // textBox2
+            // actorLastNameTextBox
             // 
-            this.textBox2.Location = new System.Drawing.Point(210, 108);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 23;
+            this.actorLastNameTextBox.Location = new System.Drawing.Point(180, 108);
+            this.actorLastNameTextBox.Name = "actorLastNameTextBox";
+            this.actorLastNameTextBox.Size = new System.Drawing.Size(130, 20);
+            this.actorLastNameTextBox.TabIndex = 23;
             // 
             // labelActorFirstName
             // 
@@ -489,6 +497,70 @@
             this.aspectRatioLabel.TabIndex = 36;
             this.aspectRatioLabel.Text = "Aspect Ratio";
             // 
+            // actor2LastNameTextBox
+            // 
+            this.actor2LastNameTextBox.Location = new System.Drawing.Point(494, 255);
+            this.actor2LastNameTextBox.Name = "actor2LastNameTextBox";
+            this.actor2LastNameTextBox.Size = new System.Drawing.Size(121, 20);
+            this.actor2LastNameTextBox.TabIndex = 37;
+            // 
+            // actor2FirstNameTextBox
+            // 
+            this.actor2FirstNameTextBox.Location = new System.Drawing.Point(354, 255);
+            this.actor2FirstNameTextBox.Name = "actor2FirstNameTextBox";
+            this.actor2FirstNameTextBox.Size = new System.Drawing.Size(121, 20);
+            this.actor2FirstNameTextBox.TabIndex = 38;
+            // 
+            // actor2LastNameLabel
+            // 
+            this.actor2LastNameLabel.AutoSize = true;
+            this.actor2LastNameLabel.Location = new System.Drawing.Point(507, 239);
+            this.actor2LastNameLabel.Name = "actor2LastNameLabel";
+            this.actor2LastNameLabel.Size = new System.Drawing.Size(95, 13);
+            this.actor2LastNameLabel.TabIndex = 39;
+            this.actor2LastNameLabel.Text = "Actor 2 Last Name";
+            // 
+            // actor2FirstNameLabel
+            // 
+            this.actor2FirstNameLabel.AutoSize = true;
+            this.actor2FirstNameLabel.Location = new System.Drawing.Point(371, 239);
+            this.actor2FirstNameLabel.Name = "actor2FirstNameLabel";
+            this.actor2FirstNameLabel.Size = new System.Drawing.Size(94, 13);
+            this.actor2FirstNameLabel.TabIndex = 40;
+            this.actor2FirstNameLabel.Text = "Actor 2 First Name";
+            // 
+            // actor3FirstNameTextBox
+            // 
+            this.actor3FirstNameTextBox.Location = new System.Drawing.Point(355, 308);
+            this.actor3FirstNameTextBox.Name = "actor3FirstNameTextBox";
+            this.actor3FirstNameTextBox.Size = new System.Drawing.Size(120, 20);
+            this.actor3FirstNameTextBox.TabIndex = 41;
+            // 
+            // actor3LastNameTextBox
+            // 
+            this.actor3LastNameTextBox.Location = new System.Drawing.Point(494, 308);
+            this.actor3LastNameTextBox.Name = "actor3LastNameTextBox";
+            this.actor3LastNameTextBox.Size = new System.Drawing.Size(120, 20);
+            this.actor3LastNameTextBox.TabIndex = 42;
+            // 
+            // actor3FirstNameLabel
+            // 
+            this.actor3FirstNameLabel.AutoSize = true;
+            this.actor3FirstNameLabel.Location = new System.Drawing.Point(371, 288);
+            this.actor3FirstNameLabel.Name = "actor3FirstNameLabel";
+            this.actor3FirstNameLabel.Size = new System.Drawing.Size(94, 13);
+            this.actor3FirstNameLabel.TabIndex = 43;
+            this.actor3FirstNameLabel.Text = "Actor 3 First Name";
+            // 
+            // actor3LastNameLabel
+            // 
+            this.actor3LastNameLabel.AutoSize = true;
+            this.actor3LastNameLabel.Location = new System.Drawing.Point(507, 288);
+            this.actor3LastNameLabel.Name = "actor3LastNameLabel";
+            this.actor3LastNameLabel.Size = new System.Drawing.Size(95, 13);
+            this.actor3LastNameLabel.TabIndex = 44;
+            this.actor3LastNameLabel.Text = "Actor 3 Last Name";
+            // 
             // ratingSelectionSlider
             // 
             this.ratingSelectionSlider.Location = new System.Drawing.Point(28, 215);
@@ -506,6 +578,14 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1097, 388);
+            this.Controls.Add(this.actor3LastNameLabel);
+            this.Controls.Add(this.actor3FirstNameLabel);
+            this.Controls.Add(this.actor3LastNameTextBox);
+            this.Controls.Add(this.actor3FirstNameTextBox);
+            this.Controls.Add(this.actor2FirstNameLabel);
+            this.Controls.Add(this.actor2LastNameLabel);
+            this.Controls.Add(this.actor2FirstNameTextBox);
+            this.Controls.Add(this.actor2LastNameTextBox);
             this.Controls.Add(this.aspectRatioLabel);
             this.Controls.Add(this.AspectRatioComboBox);
             this.Controls.Add(this.colorLabel);
@@ -519,8 +599,8 @@
             this.Controls.Add(this.advancedSearchLinkLabel);
             this.Controls.Add(this.actorlastNameLabel);
             this.Controls.Add(this.labelActorFirstName);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.actorLastNameTextBox);
+            this.Controls.Add(this.actorFirstNameTextBox);
             this.Controls.Add(this.popularityLabel);
             this.Controls.Add(this.languageLabel);
             this.Controls.Add(this.languageComboBox);
@@ -580,8 +660,8 @@
         private System.Windows.Forms.ComboBox languageComboBox;
         private System.Windows.Forms.Label languageLabel;
         private System.Windows.Forms.Label popularityLabel;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox actorFirstNameTextBox;
+        private System.Windows.Forms.TextBox actorLastNameTextBox;
         private System.Windows.Forms.Label labelActorFirstName;
         private System.Windows.Forms.Label actorlastNameLabel;
         private System.Windows.Forms.LinkLabel advancedSearchLinkLabel;
@@ -595,6 +675,14 @@
         private System.Windows.Forms.Label colorLabel;
         private System.Windows.Forms.ComboBox AspectRatioComboBox;
         private System.Windows.Forms.Label aspectRatioLabel;
+        private System.Windows.Forms.TextBox actor2LastNameTextBox;
+        private System.Windows.Forms.TextBox actor2FirstNameTextBox;
+        private System.Windows.Forms.Label actor2LastNameLabel;
+        private System.Windows.Forms.Label actor2FirstNameLabel;
+        private System.Windows.Forms.TextBox actor3FirstNameTextBox;
+        private System.Windows.Forms.TextBox actor3LastNameTextBox;
+        private System.Windows.Forms.Label actor3FirstNameLabel;
+        private System.Windows.Forms.Label actor3LastNameLabel;
     }
 }
 
