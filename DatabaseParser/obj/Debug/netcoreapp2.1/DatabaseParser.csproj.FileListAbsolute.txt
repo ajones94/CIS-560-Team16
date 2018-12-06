@@ -1,0 +1,8 @@
+\\files.cs.ksu.edu\ianriley97\Documents\CIS562\MovieApp\MovieApp\DatabaseParser\bin\Debug\netcoreapp2.1\DatabaseParser.deps.json
+\\files.cs.ksu.edu\ianriley97\Documents\CIS562\MovieApp\MovieApp\DatabaseParser\bin\Debug\netcoreapp2.1\DatabaseParser.runtimeconfig.json
+\\files.cs.ksu.edu\ianriley97\Documents\CIS562\MovieApp\MovieApp\DatabaseParser\bin\Debug\netcoreapp2.1\DatabaseParser.runtimeconfig.dev.json
+\\files.cs.ksu.edu\ianriley97\Documents\CIS562\MovieApp\MovieApp\DatabaseParser\bin\Debug\netcoreapp2.1\DatabaseParser.dll
+\\files.cs.ksu.edu\ianriley97\Documents\CIS562\MovieApp\MovieApp\DatabaseParser\obj\Debug\netcoreapp2.1\DatabaseParser.csproj.CoreCompileInputs.cache
+\\files.cs.ksu.edu\ianriley97\Documents\CIS562\MovieApp\MovieApp\DatabaseParser\obj\Debug\netcoreapp2.1\DatabaseParser.AssemblyInfoInputs.cache
+\\files.cs.ksu.edu\ianriley97\Documents\CIS562\MovieApp\MovieApp\DatabaseParser\obj\Debug\netcoreapp2.1\DatabaseParser.AssemblyInfo.cs
+\\files.cs.ksu.edu\ianriley97\Documents\CIS562\MovieApp\MovieApp\DatabaseParser\obj\Debug\netcoreapp2.1\DatabaseParser.csprojAssemblyReference.cache
