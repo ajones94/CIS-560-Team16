@@ -402,25 +402,90 @@ GO
  * Procedure for deleting a Movie entry
  **************************************/
 
-DROP PROCEDURE IF EXISTS GP.DeleteMovie 
-GO
-
 CREATE PROCEDURE GP.DeleteMovie
-   @MovieID INT
+	@MovieTitle NVARCHAR(50),
+	@MovieID INT
 AS
+BEGIN
+	DELETE FROM GP.Movies WHERE Title = @MovieTitle OR MovieID = @MovieID
+END
 
-DELETE FROM GP.Movies
-WHERE MovieID = @MovieID;
+/**************************************
+ * Procedure for deleting an Actor entry
+ **************************************/
+go
+CREATE PROCEDURE GP.DeleteActor
+	@FirstName NVARCHAR(50),
+	@LastName NVARCHAR(50),
+	@ActorID INT
+AS
+BEGIN
+	DELETE FROM GP.Actor WHERE ActorID = @ActorID OR FirstName = @FirstName OR LastName = @LastName
+END
 
-DELETE FROM GP.Links
-WHERE MovieID = @MovieID;
 
-DELETE FROM GP.Ratings
-WHERE MovieID = @MovieID;
-
-DELETE FROM GP.Tags
-WHERE MovieID = @MovieID;
+/**************************************
+ * Procedure for deleting a Director entry
+ **************************************/
 GO
+CREATE PROCEDURE GP.DeleteDirector
+	@FirstName NVARCHAR(50),
+	@LastName NVARCHAR(50),
+	@DirectorID INT
+AS
+BEGIN
+	DELETE FROM Gp.Director WHERE FirstName = @FirstName OR LastName = @LastName OR DirectorID = @DirectorID
+END
+
+/**************************************
+ * Procedure for deleting a Rating entry
+ **************************************/
+GO
+CREATE PROCEDURE GP.DeleteRating
+	@RatingID INT,
+	@IMDBRating INT,
+	@MovieID INT
+AS
+BEGIN
+	DELETE FROM GP.Rating WHERE RatingID = @RatingID OR IMDBscore = @IMDBRating OR MovieID = @MovieID
+END
+
+/**************************************
+ * Procedure for deleting a Genre entry
+ **************************************/
+GO
+CREATE PROCEDURE GP.DeleteGenre
+	@GenreID INT,
+	@Genre NVARCHAR(15)
+AS
+BEGIN
+	DELETE FROM GP.Genre WHERE GenreID = @GenreID OR Genre = @Genre
+END
+
+/**************************************
+ * Procedure for deleting a Financial entry
+ **************************************/
+GO
+CREATE PROCEDURE GP.DeleteFinances
+	@FinancialID INT,
+	@Budget INT,
+	@Gross INT
+AS
+BEGIN
+	DELETE FROM Gp.Financial WHERE FinancialID = @FinancialID OR Budget = @Budget OR Gross = @Gross
+END
+
+/**************************************
+ * Procedure for deleting an Additional Info entry
+ **************************************/
+GO
+CREATE PROCEDURE GP.DeleteAditionalInfo
+	@InfoID INT
+AS
+BEGIN
+	DELETE FROM GP.AdditionalInfo WHERE InfoID = @InfoID
+END
+
 
 -----------------------------------------------------SEARCH-----------------------------------------------------------------
 
