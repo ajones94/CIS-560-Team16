@@ -421,8 +421,7 @@ AS
 
 SELECT *
 FROM GP.Movies M
-/*WHERE CONTAINS(M.Title, @Title);*/
-WHERE M.Title LIKE @Title
+WHERE CONTAINS(M.Title, @Title);
 GO
 
 /**************************************
@@ -482,95 +481,122 @@ FROM GP.Rating R
 WHERE R.IMDBscore BETWEEN @MinRating AND @MaxRating;
 GO
 
-
-DROP PROCEDURE IF EXISTS GP.AllSearch
-GO
-
-CREATE PROCEDURE GP.AllSearch
-	@MovieTitle nvarchar(MAX) = null,
-	@Genre nvarchar(50) = null,
-	@ActorFirstName nvarchar(100) = null,
-	@ActorLastName nvarchar(100) = null,
-	@DirectorFirstName nvarchar(100) = null,
-	@DirectorLastName nvarchar(100) = null,
-	@MinRating INT = null,
-	@MaxRating INT = null,
-	@Popularity INT = null,
-	@Language nvarchar(100) = null,
-	@Budget BIGINT = null,
-	@Gross BIGINT = null,
-	@Color nvarchar(100) = null,
-	@Country nvarchar(100) = null,
-	@AspectRatio nvarchar(10) = null,
-	@Actor2FirstName nvarchar(100) = null,
-	@Actor2LastName nvarchar(100) = null,
-	@Actor3FirstName nvarchar(100) = null,
-	@Actor3LastName nvarchar(100) = null
-	AS
-
-
-	SELECT M.Title
+-----------------------------------------------------STATS-----------------------------------------------------------------
+/**************************************
+ * Procedure to find Actor Count
+ **************************************/
+CREATE PROCEDURE GP.ActorCount
+	@ActorFirstName NVARCHAR(100),
+	@ActorLastName NVARCHAR(100)
+AS
+BEGIN
+	SELECT COUNT(DISTINCT M.MovieID) AS MovieCount 
 	FROM GP.Movies M
-		INNER JOIN GP.AdditionalInfo aI on aI.MovieID = M.MovieID
-		INNER JOIN GP.Director d on d.MovieID = M.MovieID
-		INNER JOIN GP.Financial f on f.MovieID = M.MovieID
-		INNER JOIN GP.Genre g on g.MovieID = M.MovieID
-		INNER JOIN GP.Rating r on r.MovieID = M.MovieID
-		INNER JOIN GP.Region rE on rE.MovieID = M.MovieID
-		INNER JOIN GP.Actor A ON a.MovieID = M.MovieID
-		WHERE
-		(M.Title = @MovieTitle OR @MovieTitle IS NULL)
-		AND (g.Genre = @Genre OR @Genre IS NULL)
-		AND (a.FirstName = @ActorFirstName OR @ActorFirstName IS NULL)
-		AND (a.LastName = @ActorLastName OR @ActorLastName IS NULL)
-		AND (d.FirstName = @DirectorFirstName OR @DirectorFirstName IS NULL)
-		AND (d.LastName = @DirectorLastname OR @DirectorLastName IS NULL)
-		AND (r.IMDBscore BETWEEN @MinRating AND @MaxRating)
-		AND (r.VotesCount = @Popularity OR @Popularity IS NULL)
-		AND (rE.Language = @Language OR @Language IS NULL)
-		AND (f.Budget = @Budget OR @Budget IS NULL)
-		AND (f.Gross = @Gross OR @Gross IS NULL)
-		AND (aI.Color = @Color OR @Color IS NULL)
-		AND (rE.Country = @Country OR @Country IS NULL)
-		AND (aI.AspectRatio = @AspectRatio OR @AspectRatio IS NULL)
+		INNER JOIN GP.Actor A ON A.MovieID = M.MovieID
+	WHERE A.FirstName = @ActorFirstName AND A.LastName = @ActorLastName
+END
+
+
 GO
 
+/**************************************
+ * Procedure to find Director Count
+ **************************************/
+CREATE PROCEDURE GP.DirectorCount
+	@DirectorFirstName NVARCHAR(100),
+	@DirectorLastName NVARCHAR(100)
+AS
+BEGIN
+	SELECT COUNT(DISTINCT M.MovieID) AS MovieCount
+	FROM GP.Movies M
+		INNER JOIN Gp.Director D ON D.MovieID = M.MovieID
+	WHERE D.FirstName = @DirectorFirstName AND D.LastName = @DirectorLastName
+
+END
 
 
+GO
+/**************************************
+ * Procedure to Calculate Genre Gross
+ **************************************/
+CREATE PROCEDURE GP.GenreGross
+	@GenreName NVARCHAR(50)
+AS
+BEGIN
+	SELECT FORMAT(SUM(F.Gross), '##,##0') AS GenreGross
+	FROM GP.Financial F
+		INNER JOIN GP.Genre G ON G.MovieID = F.MovieID
+	WHERE G.Genre = @GenreName
+END
+
+-----------------------------------------------------FINANCIAL-----------------------------------------------------------------
+
+/**************************************
+ * Procedure to find Movie Gross
+ **************************************/
+
+EXEC GP.MovieGross
+	@Title = 'Die Hard'
+	GO
 
 
-
-DROP PROCEDURE IF EXISTS GP.MovieSearch
+DROP PROCEDURE IF EXISTS GP.MovieGross
 GO
 
-
-CREATE PROCEDURE GP.MovieSearch
-	@MovieTitle nvarchar(MAX) = null,
-	@Genre nvarchar(50) = null,
-	@Country nvarchar(100) = null,
-	@Language nvarchar(100) = null,
-	@DirectorFirstName nvarchar(100) = null,
-	@DirectorLastName nvarchar(100) = null
-
-	as 
-	SELECT g.Title, g.Year, g.Runtime, g.ContentRating, d.FirstName, d.LastName, rE.Language, rE.Country, aI.AspectRatio, aI.Color, f.Budget, f.Gross, r.IMDBscore, r.VotesCount
-	FROM GP.Genre M
-	INNER JOIN GP.Movies g on g.MovieID = M.MovieID
-	INNER JOIN GP.Director d on d.MovieID = M.MovieID
-	INNER JOIN GP.Region rE on rE.MovieID = M.MovieID
-	INNER JOIN GP.AdditionalInfo aI on aI.MovieID = M.MovieID
-	INNER JOIN GP.Financial f on f.MovieID = M.MovieID
-	INNER JOIN GP.Rating r on r.MovieID = M.MovieID
-		
-		/*INNER JOIN GP.Actor A ON a.MovieID = M.MovieID*/
-	WHERE
-	(g.Title = @MovieTitle OR @MovieTitle IS NULL)
-		AND (M.Genre = @Genre OR @Genre IS NULL)
-		AND (rE.Country = @Country OR @Country IS NULL)
-		AND (rE.Language = @Language OR @Language IS NULL)
-		AND (d.FirstName = @DirectorFirstName OR @DirectorFirstName IS NULL)
-		AND (d.LastName = @DirectorLastname OR @DirectorLastName IS NULL)
+CREATE PROCEDURE GP.MovieGross
+	@Title NVARCHAR(50)
+AS
+BEGIN
+SELECT M.Title, F.Gross
+FROM GP.Movies M
+	INNER JOIN GP.Financial F ON F.MovieID = M.MovieID
+	WHERE M.Title = @Title
+GROUP BY F.Gross, M.Title
+ORDER BY F.Gross DESC
+END
 GO
+
+/**************************************
+ * Procedure to find 100 highest grossing movies
+ **************************************/
+
+EXEC GP.TopMovieGross_100
+GO
+
+DROP PROCEDURE IF EXISTS GP.TopMovieGross_100
+GO
+
+CREATE PROCEDURE GP.TopMovieGross_100
+AS
+BEGIN
+SELECT TOP 100 F.Gross, M.Title
+FROM GP.Financial F
+	INNER JOIN GP.Movies M ON F.MovieID = M.MovieID
+GROUP BY F.Gross, M.Title
+ORDER BY F.Gross DESC
+END
+GO
+
+/**************************************
+ * Procedure to find 100 most profitable movies
+ **************************************/
+
+EXEC GP.TopMovieProfit_100
+GO
+
+DROP PROCEDURE IF EXISTS GP.TopMovieProfit_100
+GO
+
+CREATE PROCEDURE GP.TopMovieProfit_100
+AS
+
+SELECT TOP 100 -SUM(F.Gross - F.Budget) AS Profit, M.Title
+FROM GP.Financial F
+	INNER JOIN GP.Movies M ON M.MovieID = F.MovieID
+GROUP BY M.Title
+ORDER BY Profit ASC
+GO
+
 
  /*/**************************************************
  * Specific Search Procedure using Title, Tag, Genre
