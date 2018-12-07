@@ -643,7 +643,6 @@ namespace MovieApp
                 }
                 
             }
-
             if (searchForFinancial.Checked == true)
             {
                 #region variable value setting
@@ -815,7 +814,6 @@ namespace MovieApp
                 }
 
             }
-
         }
 
 
@@ -912,7 +910,7 @@ namespace MovieApp
                 this.actorFirstNameTextBox.Visible = false;
                 this.actorlastNameLabel.Visible = false;
                 this.actorLastNameTextBox.Visible = false;
-                this.insertButton.Visible = true;
+                this.insertButton.Visible = false;
                 advancedSearch = false;
             }
         }
