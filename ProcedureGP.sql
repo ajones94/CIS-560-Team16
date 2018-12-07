@@ -481,6 +481,75 @@ FROM GP.Rating R
 WHERE R.IMDBscore BETWEEN @MinRating AND @MaxRating;
 GO
 
+-----------------------------------------------------FINANCIAL-----------------------------------------------------------------
+
+/**************************************
+ * Procedure to find Movie Gross
+ **************************************/
+
+EXEC GP.MovieGross
+	@Title = 'Die Hard'
+	GO
+
+
+DROP PROCEDURE IF EXISTS GP.MovieGross
+GO
+
+CREATE PROCEDURE GP.MovieGross
+	@Title NVARCHAR(50)
+AS
+BEGIN
+SELECT M.Title, F.Gross
+FROM GP.Movies M
+	INNER JOIN GP.Financial F ON F.MovieID = M.MovieID
+	WHERE M.Title = @Title
+GROUP BY F.Gross, M.Title
+ORDER BY F.Gross DESC
+END
+GO
+
+/**************************************
+ * Procedure to find 100 highest grossing movies
+ **************************************/
+
+EXEC GP.TopMovieGross_100
+GO
+
+DROP PROCEDURE IF EXISTS GP.TopMovieGross_100
+GO
+
+CREATE PROCEDURE GP.TopMovieGross_100
+AS
+BEGIN
+SELECT TOP 100 F.Gross, M.Title
+FROM GP.Financial F
+	INNER JOIN GP.Movies M ON F.MovieID = M.MovieID
+GROUP BY F.Gross, M.Title
+ORDER BY F.Gross DESC
+END
+GO
+
+/**************************************
+ * Procedure to find 100 most profitable movies
+ **************************************/
+
+EXEC GP.TopMovieProfit_100
+GO
+
+DROP PROCEDURE IF EXISTS GP.TopMovieProfit_100
+GO
+
+CREATE PROCEDURE GP.TopMovieProfit_100
+AS
+
+SELECT TOP 100 -SUM(F.Gross - F.Budget) AS Profit, M.Title
+FROM GP.Financial F
+	INNER JOIN GP.Movies M ON M.MovieID = F.MovieID
+GROUP BY M.Title
+ORDER BY Profit ASC
+GO
+
+
  /*/**************************************************
  * Specific Search Procedure using Title, Tag, Genre
  ***************************************************/
