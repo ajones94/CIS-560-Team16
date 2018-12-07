@@ -449,7 +449,7 @@ END
  **************************************/
 
 EXEC GP.TitleSearch
-	@Title = 'tet'
+	@Title = 'CIS560'
 	GO
 
 DROP PROCEDURE IF EXISTS GP.TitleSearch
@@ -494,17 +494,17 @@ GO
  * Director Name Search Procedure
  **************************************/
 
-DROP PROCEDURE IF EXISTS GP.DirectorSearch
-GO
+--DROP PROCEDURE IF EXISTS GP.DirectorSearch
+--GO
 
-CREATE PROCEDURE GP.DirectorSearch
-    @Name NVARCHAR(20)
-AS
+--CREATE PROCEDURE GP.DirectorSearch
+--    @Name NVARCHAR(20)
+--AS
 
-SELECT *
-FROM GP.Director D
-WHERE D.FirstName = @Name OR D.LastName = @Name;
-GO
+--SELECT *
+--FROM GP.Director D
+--WHERE D.FirstName = @Name OR D.LastName = @Name;
+--GO
 
 /**************************************
  * Rating Range Search Procedure
