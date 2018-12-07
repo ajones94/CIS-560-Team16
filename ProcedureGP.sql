@@ -689,7 +689,7 @@ GO
 CREATE PROCEDURE GP.TopMovieProfit_100
 AS
 
-SELECT TOP 100 SUM(F.Gross - F.Budget) AS Profit, M.Title
+SELECT TOP 100 SUM(F.Gross-F.Budget) AS Profit, M.Title
 FROM GP.Financial F
 	INNER JOIN GP.Movies M ON M.MovieID = F.MovieID
 GROUP BY M.Title

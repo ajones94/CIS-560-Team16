@@ -99,7 +99,6 @@ namespace MovieApp
 
         private void searchButton_Click(object sender, EventArgs e)
         {
-            //resultsListView = new ListView();
             resultsListView.Items.Clear();
             resultsListView.Columns.Clear();
             movieTitle = null;
