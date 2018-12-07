@@ -460,7 +460,10 @@ GO
  * Rating Range Search Procedure
  **************************************/
 
---Untested
+EXEC GP.RatingRangeSearch
+	@MinRating = 5,
+	@MaxRating = 8
+	GO
 
 DROP PROCEDURE IF EXISTS GP.RatingRangeSearch
 GO
@@ -470,15 +473,17 @@ CREATE PROCEDURE GP.RatingRangeSearch
    @MaxRating INT
 AS
 
-SELECT *
+SELECT DISTINCT M.Title, R.IMDBscore, F.Gross, F.Budget, REG.Country, REG.Language 
 FROM GP.Rating R
-  INNER JOIN GP.Actor A ON A.MovieID = R.MovieID
-  INNER JOIN GP.Director D ON D.MovieID = R.MovieID
-  INNER JOIN GP.Genre G ON G.MovieID = R.MovieID
-  INNER JOIN GP.Region REG ON REG.MovieID = R.MovieID
-  INNER JOIN GP.Financial F ON F.MovieID = R.MovieID
-  INNER JOIN GP.AdditionalInfo I ON I.MovieID = R.MovieID
-WHERE R.IMDBscore BETWEEN @MinRating AND @MaxRating;
+	  INNER JOIN GP.Movies M ON M.MovieID = R.MovieID
+	  INNER JOIN GP.Actor A ON A.MovieID = R.MovieID
+	  INNER JOIN GP.Director D ON D.MovieID = R.MovieID
+	  INNER JOIN GP.Genre G ON G.MovieID = R.MovieID
+	  INNER JOIN GP.Region REG ON REG.MovieID = R.MovieID
+	  INNER JOIN GP.Financial F ON F.MovieID = R.MovieID
+	  INNER JOIN GP.AdditionalInfo I ON I.MovieID = R.MovieID
+WHERE R.IMDBscore BETWEEN @MinRating AND @MaxRating
+ORDER BY R.IMDBscore DESC;
 GO
 
 -----------------------------------------------------STATS-----------------------------------------------------------------
