@@ -535,7 +535,7 @@ CREATE PROCEDURE GP.GenreGross
 	@GenreName NVARCHAR(50)
 AS
 BEGIN
-	SELECT FORMAT(SUM(F.Gross), '##,##0') AS GenreGross, FORMAT(SUM(F.Budget), '##,##0') as GenreBudget, SUM(F.Gross-F.Budget) AS GenreProfit
+	SELECT FORMAT(SUM(F.Gross), '##,##0') AS GenreGross, FORMAT(SUM(F.Budget), '##,##0') as GenreBudget, FORMAT(SUM(F.Gross-F.Budget), '##,##0') AS GenreProfit
 	FROM GP.Financial F
 		INNER JOIN GP.Genre G ON G.MovieID = F.MovieID
 	WHERE G.Genre = @GenreName
@@ -627,11 +627,11 @@ GO
 CREATE PROCEDURE GP.TopMovieProfit_100
 AS
 
-SELECT TOP 100 -SUM(F.Gross - F.Budget) AS Profit, M.Title
+SELECT TOP 100 SUM(F.Gross - F.Budget) AS Profit, M.Title
 FROM GP.Financial F
 	INNER JOIN GP.Movies M ON M.MovieID = F.MovieID
 GROUP BY M.Title
-ORDER BY Profit ASC
+ORDER BY Profit DESC
 GO
 
 DROP PROCEDURE IF EXISTS GP.MovieSearch
@@ -656,7 +656,7 @@ CREATE PROCEDURE GP.MovieSearch
 		
 		/*INNER JOIN GP.Actor A ON a.MovieID = M.MovieID*/
 	WHERE
-	(g.Title = @MovieTitle OR @MovieTitle IS NULL)
+		(g.Title = @MovieTitle OR @MovieTitle IS NULL)
 		AND (M.Genre = @Genre OR @Genre IS NULL)
 		AND (rE.Country = @Country OR @Country IS NULL)
 		AND (rE.Language = @Language OR @Language IS NULL)
