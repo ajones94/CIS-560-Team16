@@ -460,7 +460,10 @@ GO
  * Rating Range Search Procedure
  **************************************/
 
---Untested
+EXEC GP.RatingRangeSearch
+	@MinRating = 5,
+	@MaxRating = 8
+	GO
 
 DROP PROCEDURE IF EXISTS GP.RatingRangeSearch
 GO
@@ -470,15 +473,17 @@ CREATE PROCEDURE GP.RatingRangeSearch
    @MaxRating INT
 AS
 
-SELECT *
+SELECT DISTINCT M.Title, R.IMDBscore, F.Gross, F.Budget, REG.Country, REG.Language 
 FROM GP.Rating R
-  INNER JOIN GP.Actor A ON A.MovieID = R.MovieID
-  INNER JOIN GP.Director D ON D.MovieID = R.MovieID
-  INNER JOIN GP.Genre G ON G.MovieID = R.MovieID
-  INNER JOIN GP.Region REG ON REG.MovieID = R.MovieID
-  INNER JOIN GP.Financial F ON F.MovieID = R.MovieID
-  INNER JOIN GP.AdditionalInfo I ON I.MovieID = R.MovieID
-WHERE R.IMDBscore BETWEEN @MinRating AND @MaxRating;
+	  INNER JOIN GP.Movies M ON M.MovieID = R.MovieID
+	  INNER JOIN GP.Actor A ON A.MovieID = R.MovieID
+	  INNER JOIN GP.Director D ON D.MovieID = R.MovieID
+	  INNER JOIN GP.Genre G ON G.MovieID = R.MovieID
+	  INNER JOIN GP.Region REG ON REG.MovieID = R.MovieID
+	  INNER JOIN GP.Financial F ON F.MovieID = R.MovieID
+	  INNER JOIN GP.AdditionalInfo I ON I.MovieID = R.MovieID
+WHERE R.IMDBscore BETWEEN @MinRating AND @MaxRating
+ORDER BY R.IMDBscore DESC;
 GO
 
 -----------------------------------------------------STATS-----------------------------------------------------------------
@@ -553,6 +558,31 @@ FROM GP.Movies M
 	WHERE M.Title = @Title
 GROUP BY F.Gross, M.Title
 ORDER BY F.Gross DESC
+END
+GO
+
+/**************************************
+ * Procedure to find Movie Budget
+ **************************************/
+
+EXEC GP.MovieBudget
+	@Title = 'Die Hard'
+	GO
+
+
+DROP PROCEDURE IF EXISTS GP.MovieBudget
+GO
+
+CREATE PROCEDURE GP.MovieBudget
+	@Title NVARCHAR(50)
+AS
+BEGIN
+SELECT M.Title, FORMAT(F.Budget, '##,##0')
+FROM GP.Movies M
+	INNER JOIN GP.Financial F ON F.MovieID = M.MovieID
+	WHERE M.Title = @Title
+GROUP BY F.Budget, M.Title
+ORDER BY F.Budget DESC
 END
 GO
 
