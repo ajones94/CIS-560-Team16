@@ -48,16 +48,16 @@ namespace MovieApp
 
             this.popularityLabel.Visible = false;
             this.popularityNumericUpDown.Visible = false;
-            this.languageLabel.Visible = false;
-            this.languageComboBox.Visible = false;
+            //this.languageLabel.Visible = false;
+            //this.languageComboBox.Visible = false;
             this.budgetLabel.Visible = false;
             this.budgetNumericUpDown.Visible = false;
             this.grossLabel.Visible = false;
             this.grossNumbericUpdown.Visible = false;
             this.colorLabel.Visible = false;
             this.colorComboBox.Visible = false;
-            this.countryLabel.Visible = false;
-            this.countryComboBox.Visible = false;
+            //this.countryLabel.Visible = false;
+            //this.countryComboBox.Visible = false;
             this.aspectRatioLabel.Visible = false;
             this.AspectRatioComboBox.Visible = false;
             this.actor2FirstNameLabel.Visible = false;
@@ -95,11 +95,164 @@ namespace MovieApp
 
         private void searchButton_Click(object sender, EventArgs e)
         {
+            //resultsListView = new ListView();
+            resultsListView.Items.Clear();
+            movieTitle = null;
+            directorFirstName = null;
+            directorLastName = null;
+            genre = null;
+            actorFirstName = null;
+             actorLastName = null;
+
+            if(searchForMovies.Checked == true)
+            {
+                ratingMin = ratingSelectionSlider.SelectedMin;
+                ratingMax = ratingSelectionSlider.SelectedMax;
+                if (movieTitleTextBox.Text != "")
+                {
+                    movieTitle = movieTitleTextBox.Text;
+
+                }
+                if (directorFirstNameTextbox.Text != "")
+                {
+                    directorFirstName = directorFirstNameTextbox.Text;
+                }
+                if (directorLastNameTextBox.Text != "")
+                {
+                    directorLastName = directorLastNameTextBox.Text;
+                }
+                if (genreComboBox.Text != "")
+                {
+                    genre = genreComboBox.Text;
+                }
+                if (actorFirstNameTextBox.Text != "")
+                {
+                    actorFirstName = actorFirstNameTextBox.Text;
+                }
+                if (actorLastNameTextBox.Text != "")
+                {
+                    actorLastName = actorLastNameTextBox.Text;
+                }
+                if (actor2FirstNameTextBox.Text != "")
+                {
+                    actor2FirstName = actorFirstNameTextBox.Text;
+                }
+                if (actor2LastNameTextBox.Text != "")
+                {
+                    actor2LastName = actor2LastNameTextBox.Text;
+                }
+                if (actor3FirstNameTextBox.Text != "")
+                {
+                    actor3FirstName = actorFirstNameTextBox.Text;
+                }
+                if (actor3LastNameTextBox.Text != "")
+                {
+                    actor3LastName = actor3LastNameTextBox.Text;
+                }
+                if (popularityNumericUpDown.Value != 0)
+                {
+                    popularity = (int)popularityNumericUpDown.Value;
+                }
+                if (languageComboBox.Text != "")
+                {
+                    language = languageComboBox.Text;
+                }
+                if (budgetNumericUpDown.Value != 0)
+                {
+                    budget = (Int64)budgetNumericUpDown.Value;
+                }
+                if (grossNumbericUpdown.Value != 0)
+                {
+                    gross = (Int64)grossNumbericUpdown.Value;
+                }
+                if (colorComboBox.Text != "")
+                {
+                    color = colorComboBox.Text;
+                }
+                if (countryComboBox.Text != "")
+                {
+                    country = countryComboBox.Text;
+                }
+                if (AspectRatioComboBox.Text != "")
+                {
+                    aspectRatio = Double.Parse(AspectRatioComboBox.Text);
+                }
+                SqlCommand cmd = new SqlCommand("GP.MovieSearch", connect);
+
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add(new SqlParameter("@MovieTitle", movieTitle));
+                cmd.Parameters.Add(new SqlParameter("@Genre", genre));
+                cmd.Parameters.Add(new SqlParameter("@Country", country));
+                cmd.Parameters.Add(new SqlParameter("@Language", language));
+                cmd.Parameters.Add(new SqlParameter("@DirectorFirstName", directorFirstName));
+                cmd.Parameters.Add(new SqlParameter("@DirectorLastName", directorLastName));
+                using (SqlDataReader rdr = cmd.ExecuteReader())
+                {
+                    if (rdr.HasRows == false)
+                    {
+                        MessageBox.Show("Nothing returned for that query");
+                    }
+                    int count = 0;
+                    for(int col = 0; col < rdr.FieldCount; col++)
+                    {
+                        resultsListView.Columns.Add(rdr.GetName(col).ToString());
+                    }
+                    while (rdr.Read())
+                    {
+                        ListViewItem item = new ListViewItem(rdr["Title"].ToString());
+                        for (int col = 1; col < rdr.FieldCount; col++)
+                        {
+                            item.SubItems.Add(rdr[col].ToString());   
+                        }
+                        //ListViewItem item = new ListViewItem(rdr["Title"].ToString());
+                        //item.SubItems.Add(rdr["FirstName"].ToString());
+                        //item.SubItems.Add(rdr["LastName"].ToString());
+                        //item.SubItems.Add(rdr["Year"].ToString());
+                        //item.SubItems.Add(rdr["Runtime"].ToString());
+                        //item.SubItems.Add(rdr["ContentRating"].ToString());
+                        //item.SubItems.Add(rdr["FirstName"].ToString());
+                        //ListViewItem item = new ListViewItem(rdr["Title"].ToString());
+                        //item.SubItems.Add(rdr["Year"].ToString());
+                        //item.SubItems.Add(rdr["Runtime"].ToString());
+                        //item.SubItems.Add(rdr["ContentRating"].ToString());
+                        resultsListView.Items.Add(item);
+                        count++;
+                    }
+                }
+
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             ratingMin = ratingSelectionSlider.SelectedMin;
             ratingMax = ratingSelectionSlider.SelectedMax;
-            if (movieTitleTextBox.Text != "" || movieTitleTextBox.Text != " ")
+            if (movieTitleTextBox.Text != "")
             {
                 movieTitle = movieTitleTextBox.Text;
+
             }
             if(directorFirstNameTextbox.Text != "" || directorFirstNameTextbox.Text != " ")
             {
@@ -109,7 +262,7 @@ namespace MovieApp
             {
                 directorLastName = directorLastNameTextBox.Text;
             }
-            if(genreComboBox.Text != "")
+            if(genreComboBox.Text == "")
             {
                 genre = genreComboBox.Text;
             }
@@ -123,7 +276,7 @@ namespace MovieApp
             }
             if (actor2FirstNameTextBox.Text != "" || actorFirstNameTextBox.Text != " ")
             {
-                actorFirstName = actorFirstNameTextBox.Text;
+                actor2FirstName = actorFirstNameTextBox.Text;
             }
             if (actor2LastNameTextBox.Text != "" || actorLastNameTextBox.Text != " ")
             {
@@ -131,7 +284,7 @@ namespace MovieApp
             }
             if (actor3FirstNameTextBox.Text != "" || actorFirstNameTextBox.Text != " ")
             {
-                actorFirstName = actorFirstNameTextBox.Text;
+                actor3FirstName = actorFirstNameTextBox.Text;
             }
             if (actor3LastNameTextBox.Text != "" || actorLastNameTextBox.Text != " ")
             {
@@ -169,13 +322,67 @@ namespace MovieApp
 
 
 
+            //SqlCommand cmd = new SqlCommand("GP.AllSearch", connect);
 
+            //cmd.CommandType = CommandType.StoredProcedure;
 
+            ////cmd.Parameters.Add(new SqlParameter("@MovieTitle", movieTitle));
+            ////cmd.Parameters.Add(new SqlParameter("@Genre", genre));
+            ////cmd.Parameters.Add(new SqlParameter("@ActorFirstName", actorFirstName));
+            ////cmd.Parameters.Add(new SqlParameter("@ActorLastName", actorLastName));
+            ////cmd.Parameters.Add(new SqlParameter("@DirectorFirstName", directorFirstName));
+            ////cmd.Parameters.Add(new SqlParameter("@DirectorLastName", directorLastName));
+            ////cmd.Parameters.Add(new SqlParameter("@MinRating", ratingMin));
+            ////cmd.Parameters.Add(new SqlParameter("@MaxRating", ratingMax));
+            ////cmd.Parameters.Add(new SqlParameter("@Popularity", popularity));
+            ////cmd.Parameters.Add(new SqlParameter("@Language", language));
+            ////cmd.Parameters.Add(new SqlParameter("@Budget", budget));
+            ////cmd.Parameters.Add(new SqlParameter("@Gross", gross));
+            ////cmd.Parameters.Add(new SqlParameter("@Color", color));
+            ////cmd.Parameters.Add(new SqlParameter("@Country", country));
+            ////cmd.Parameters.Add(new SqlParameter("@AspectRatio", aspectRatio));
+            ////cmd.Parameters.Add(new SqlParameter("@Actor2FirstName", actor2FirstName));
+            ////cmd.Parameters.Add(new SqlParameter("@Actor2LastName", actor2LastName));
+            ////cmd.Parameters.Add(new SqlParameter("@Actor3FirstName", actor3FirstName));
+            ////cmd.Parameters.Add(new SqlParameter("@Actor3LastName", actor3LastName));
+            //cmd.Parameters.Add(new SqlParameter("@MovieTitle", null));
+            //cmd.Parameters.Add(new SqlParameter("@Genre", genre));
+            //cmd.Parameters.Add(new SqlParameter("@ActorFirstName", null));
+            //cmd.Parameters.Add(new SqlParameter("@ActorLastName", null));
+            //cmd.Parameters.Add(new SqlParameter("@DirectorFirstName", null));
+            //cmd.Parameters.Add(new SqlParameter("@DirectorLastName", null));
+            //cmd.Parameters.Add(new SqlParameter("@MinRating", ratingMin));
+            //cmd.Parameters.Add(new SqlParameter("@MaxRating", ratingMax));
+            //cmd.Parameters.Add(new SqlParameter("@Popularity", null));
+            //cmd.Parameters.Add(new SqlParameter("@Language", null));
+            //cmd.Parameters.Add(new SqlParameter("@Budget", null));
+            //cmd.Parameters.Add(new SqlParameter("@Gross", null));
+            //cmd.Parameters.Add(new SqlParameter("@Color", null));
+            //cmd.Parameters.Add(new SqlParameter("@Country", null));
+            //cmd.Parameters.Add(new SqlParameter("@AspectRatio", null));
 
-
-
-
-
+            //using (SqlDataReader rdr = cmd.ExecuteReader())
+            //{
+            //    if (rdr.HasRows == false)
+            //    {
+            //        MessageBox.Show("Nothing returned for that query");
+            //    }
+            //    int count = 0;
+            //    while (rdr.Read())
+            //    {
+            //        ListViewItem item = new ListViewItem(rdr["Title"].ToString());
+            //        //item.SubItems.Add(rdr["Year"].ToString());
+            //        //item.SubItems.Add(rdr["Runtime"].ToString());
+            //        //item.SubItems.Add(rdr["ContentRating"].ToString());
+            //        //item.SubItems.Add(rdr["FirstName"].ToString());
+            //        //ListViewItem item = new ListViewItem(rdr["Title"].ToString());
+            //        //item.SubItems.Add(rdr["Year"].ToString());
+            //        //item.SubItems.Add(rdr["Runtime"].ToString());
+            //        //item.SubItems.Add(rdr["ContentRating"].ToString());
+            //        resultsListView.Items.Add(item);
+            //        count++;
+            //    }
+            //}
 
 
 
@@ -270,6 +477,39 @@ namespace MovieApp
                 this.actor3LastNameTextBox.Visible = false;
                 advancedSearch = false;
             }
+        }
+
+        private void insertButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void searchForMovies_CheckedChanged(object sender, EventArgs e)
+        {
+            searchForActors.Checked = false;
+            searchForDirectors.Checked = false;
+            searchForFinancial.Checked = false;
+        }
+
+        private void searchForActors_CheckedChanged(object sender, EventArgs e)
+        {
+            searchForMovies.Checked = false;
+            searchForDirectors.Checked = false;
+            searchForFinancial.Checked = false;
+        }
+
+        private void searchForDirectors_CheckedChanged(object sender, EventArgs e)
+        {
+            searchForActors.Checked = false;
+            searchForMovies.Checked = false;
+            searchForFinancial.Checked = false;
+        }
+
+        private void searchForFinancial_CheckedChanged(object sender, EventArgs e)
+        {
+            searchForActors.Checked = false;
+            searchForMovies.Checked = false;
+            searchForDirectors.Checked = false;
         }
     }
 }

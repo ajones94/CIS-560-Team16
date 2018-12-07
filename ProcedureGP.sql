@@ -421,7 +421,8 @@ AS
 
 SELECT *
 FROM GP.Movies M
-WHERE CONTAINS(M.Title, @Title);
+/*WHERE CONTAINS(M.Title, @Title);*/
+WHERE M.Title LIKE @Title
 GO
 
 /**************************************
@@ -479,6 +480,96 @@ FROM GP.Rating R
   INNER JOIN GP.Financial F ON F.MovieID = R.MovieID
   INNER JOIN GP.AdditionalInfo I ON I.MovieID = R.MovieID
 WHERE R.IMDBscore BETWEEN @MinRating AND @MaxRating;
+GO
+
+
+DROP PROCEDURE IF EXISTS GP.AllSearch
+GO
+
+CREATE PROCEDURE GP.AllSearch
+	@MovieTitle nvarchar(MAX) = null,
+	@Genre nvarchar(50) = null,
+	@ActorFirstName nvarchar(100) = null,
+	@ActorLastName nvarchar(100) = null,
+	@DirectorFirstName nvarchar(100) = null,
+	@DirectorLastName nvarchar(100) = null,
+	@MinRating INT = null,
+	@MaxRating INT = null,
+	@Popularity INT = null,
+	@Language nvarchar(100) = null,
+	@Budget BIGINT = null,
+	@Gross BIGINT = null,
+	@Color nvarchar(100) = null,
+	@Country nvarchar(100) = null,
+	@AspectRatio nvarchar(10) = null,
+	@Actor2FirstName nvarchar(100) = null,
+	@Actor2LastName nvarchar(100) = null,
+	@Actor3FirstName nvarchar(100) = null,
+	@Actor3LastName nvarchar(100) = null
+	AS
+
+
+	SELECT M.Title
+	FROM GP.Movies M
+		INNER JOIN GP.AdditionalInfo aI on aI.MovieID = M.MovieID
+		INNER JOIN GP.Director d on d.MovieID = M.MovieID
+		INNER JOIN GP.Financial f on f.MovieID = M.MovieID
+		INNER JOIN GP.Genre g on g.MovieID = M.MovieID
+		INNER JOIN GP.Rating r on r.MovieID = M.MovieID
+		INNER JOIN GP.Region rE on rE.MovieID = M.MovieID
+		INNER JOIN GP.Actor A ON a.MovieID = M.MovieID
+		WHERE
+		(M.Title = @MovieTitle OR @MovieTitle IS NULL)
+		AND (g.Genre = @Genre OR @Genre IS NULL)
+		AND (a.FirstName = @ActorFirstName OR @ActorFirstName IS NULL)
+		AND (a.LastName = @ActorLastName OR @ActorLastName IS NULL)
+		AND (d.FirstName = @DirectorFirstName OR @DirectorFirstName IS NULL)
+		AND (d.LastName = @DirectorLastname OR @DirectorLastName IS NULL)
+		AND (r.IMDBscore BETWEEN @MinRating AND @MaxRating)
+		AND (r.VotesCount = @Popularity OR @Popularity IS NULL)
+		AND (rE.Language = @Language OR @Language IS NULL)
+		AND (f.Budget = @Budget OR @Budget IS NULL)
+		AND (f.Gross = @Gross OR @Gross IS NULL)
+		AND (aI.Color = @Color OR @Color IS NULL)
+		AND (rE.Country = @Country OR @Country IS NULL)
+		AND (aI.AspectRatio = @AspectRatio OR @AspectRatio IS NULL)
+GO
+
+
+
+
+
+
+DROP PROCEDURE IF EXISTS GP.MovieSearch
+GO
+
+
+CREATE PROCEDURE GP.MovieSearch
+	@MovieTitle nvarchar(MAX) = null,
+	@Genre nvarchar(50) = null,
+	@Country nvarchar(100) = null,
+	@Language nvarchar(100) = null,
+	@DirectorFirstName nvarchar(100) = null,
+	@DirectorLastName nvarchar(100) = null
+
+	as 
+	SELECT g.Title, g.Year, g.Runtime, g.ContentRating, d.FirstName, d.LastName, rE.Language, rE.Country, aI.AspectRatio, aI.Color, f.Budget, f.Gross, r.IMDBscore, r.VotesCount
+	FROM GP.Genre M
+	INNER JOIN GP.Movies g on g.MovieID = M.MovieID
+	INNER JOIN GP.Director d on d.MovieID = M.MovieID
+	INNER JOIN GP.Region rE on rE.MovieID = M.MovieID
+	INNER JOIN GP.AdditionalInfo aI on aI.MovieID = M.MovieID
+	INNER JOIN GP.Financial f on f.MovieID = M.MovieID
+	INNER JOIN GP.Rating r on r.MovieID = M.MovieID
+		
+		/*INNER JOIN GP.Actor A ON a.MovieID = M.MovieID*/
+	WHERE
+	(g.Title = @MovieTitle OR @MovieTitle IS NULL)
+		AND (M.Genre = @Genre OR @Genre IS NULL)
+		AND (rE.Country = @Country OR @Country IS NULL)
+		AND (rE.Language = @Language OR @Language IS NULL)
+		AND (d.FirstName = @DirectorFirstName OR @DirectorFirstName IS NULL)
+		AND (d.LastName = @DirectorLastname OR @DirectorLastName IS NULL)
 GO
 
  /*/**************************************************

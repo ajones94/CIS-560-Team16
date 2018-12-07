@@ -39,14 +39,7 @@
             this.ratingLabel = new System.Windows.Forms.Label();
             this.labelLowerRating = new System.Windows.Forms.Label();
             this.labelHigherRating = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.resultsListView = new System.Windows.Forms.ListView();
-            this.movieTitleHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.directorFirstNameHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.directorLastNameHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.genreHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.minHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.maxHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.searchButton = new System.Windows.Forms.Button();
             this.resetButton = new System.Windows.Forms.Button();
             this.popularityNumericUpDown = new System.Windows.Forms.NumericUpDown();
@@ -76,6 +69,12 @@
             this.actor3LastNameTextBox = new System.Windows.Forms.TextBox();
             this.actor3FirstNameLabel = new System.Windows.Forms.Label();
             this.actor3LastNameLabel = new System.Windows.Forms.Label();
+            this.insertButton = new System.Windows.Forms.Button();
+            this.searchForLabel = new System.Windows.Forms.Label();
+            this.searchForMovies = new System.Windows.Forms.CheckBox();
+            this.searchForActors = new System.Windows.Forms.CheckBox();
+            this.searchForDirectors = new System.Windows.Forms.CheckBox();
+            this.searchForFinancial = new System.Windows.Forms.CheckBox();
             this.ratingSelectionSlider = new MovieApp.SelectionRangeSlider();
             ((System.ComponentModel.ISupportInitialize)(this.popularityNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.budgetNumericUpDown)).BeginInit();
@@ -199,58 +198,17 @@
             this.labelHigherRating.TabIndex = 12;
             this.labelHigherRating.Text = "100";
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(14, 9);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(66, 13);
-            this.label5.TabIndex = 14;
-            this.label5.Text = "Admin Mode";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
-            // 
             // resultsListView
             // 
-            this.resultsListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.movieTitleHeader,
-            this.directorFirstNameHeader,
-            this.directorLastNameHeader,
-            this.genreHeader,
-            this.minHeader,
-            this.maxHeader});
             this.resultsListView.Location = new System.Drawing.Point(655, 12);
             this.resultsListView.Name = "resultsListView";
             this.resultsListView.Size = new System.Drawing.Size(416, 351);
             this.resultsListView.TabIndex = 15;
             this.resultsListView.UseCompatibleStateImageBehavior = false;
             // 
-            // movieTitleHeader
-            // 
-            this.movieTitleHeader.Text = "Movie Title";
-            // 
-            // directorFirstNameHeader
-            // 
-            this.directorFirstNameHeader.Text = "Director First Name";
-            // 
-            // directorLastNameHeader
-            // 
-            this.directorLastNameHeader.Text = "Director Last Name";
-            // 
-            // genreHeader
-            // 
-            this.genreHeader.Text = "Genre";
-            // 
-            // minHeader
-            // 
-            this.minHeader.Text = "Minimum Rating";
-            // 
-            // maxHeader
-            // 
-            this.maxHeader.Text = "Max Rating";
-            // 
             // searchButton
             // 
-            this.searchButton.Location = new System.Drawing.Point(12, 288);
+            this.searchButton.Location = new System.Drawing.Point(12, 261);
             this.searchButton.Name = "searchButton";
             this.searchButton.Size = new System.Drawing.Size(142, 40);
             this.searchButton.TabIndex = 16;
@@ -260,7 +218,7 @@
             // 
             // resetButton
             // 
-            this.resetButton.Location = new System.Drawing.Point(174, 288);
+            this.resetButton.Location = new System.Drawing.Point(174, 261);
             this.resetButton.Name = "resetButton";
             this.resetButton.Size = new System.Drawing.Size(142, 40);
             this.resetButton.TabIndex = 17;
@@ -324,7 +282,7 @@
             "Arabic",
             "Greek",
             "Korean"});
-            this.languageComboBox.Location = new System.Drawing.Point(494, 61);
+            this.languageComboBox.Location = new System.Drawing.Point(11, 107);
             this.languageComboBox.Name = "languageComboBox";
             this.languageComboBox.Size = new System.Drawing.Size(120, 21);
             this.languageComboBox.TabIndex = 19;
@@ -332,7 +290,7 @@
             // languageLabel
             // 
             this.languageLabel.AutoSize = true;
-            this.languageLabel.Location = new System.Drawing.Point(529, 46);
+            this.languageLabel.Location = new System.Drawing.Point(46, 92);
             this.languageLabel.Name = "languageLabel";
             this.languageLabel.Size = new System.Drawing.Size(55, 13);
             this.languageLabel.TabIndex = 20;
@@ -349,14 +307,14 @@
             // 
             // actorFirstNameTextBox
             // 
-            this.actorFirstNameTextBox.Location = new System.Drawing.Point(12, 108);
+            this.actorFirstNameTextBox.Location = new System.Drawing.Point(342, 265);
             this.actorFirstNameTextBox.Name = "actorFirstNameTextBox";
             this.actorFirstNameTextBox.Size = new System.Drawing.Size(136, 20);
             this.actorFirstNameTextBox.TabIndex = 22;
             // 
             // actorLastNameTextBox
             // 
-            this.actorLastNameTextBox.Location = new System.Drawing.Point(180, 108);
+            this.actorLastNameTextBox.Location = new System.Drawing.Point(510, 265);
             this.actorLastNameTextBox.Name = "actorLastNameTextBox";
             this.actorLastNameTextBox.Size = new System.Drawing.Size(130, 20);
             this.actorLastNameTextBox.TabIndex = 23;
@@ -364,7 +322,7 @@
             // labelActorFirstName
             // 
             this.labelActorFirstName.AutoSize = true;
-            this.labelActorFirstName.Location = new System.Drawing.Point(14, 92);
+            this.labelActorFirstName.Location = new System.Drawing.Point(517, 143);
             this.labelActorFirstName.Name = "labelActorFirstName";
             this.labelActorFirstName.Size = new System.Drawing.Size(85, 13);
             this.labelActorFirstName.TabIndex = 24;
@@ -373,7 +331,7 @@
             // actorlastNameLabel
             // 
             this.actorlastNameLabel.AutoSize = true;
-            this.actorlastNameLabel.Location = new System.Drawing.Point(224, 92);
+            this.actorlastNameLabel.Location = new System.Drawing.Point(507, 45);
             this.actorlastNameLabel.Name = "actorlastNameLabel";
             this.actorlastNameLabel.Size = new System.Drawing.Size(86, 13);
             this.actorlastNameLabel.TabIndex = 25;
@@ -425,7 +383,7 @@
             // countryComboBox
             // 
             this.countryComboBox.FormattingEnabled = true;
-            this.countryComboBox.Location = new System.Drawing.Point(494, 158);
+            this.countryComboBox.Location = new System.Drawing.Point(180, 108);
             this.countryComboBox.Name = "countryComboBox";
             this.countryComboBox.Size = new System.Drawing.Size(121, 21);
             this.countryComboBox.TabIndex = 31;
@@ -433,7 +391,7 @@
             // countryLabel
             // 
             this.countryLabel.AutoSize = true;
-            this.countryLabel.Location = new System.Drawing.Point(529, 142);
+            this.countryLabel.Location = new System.Drawing.Point(226, 92);
             this.countryLabel.Name = "countryLabel";
             this.countryLabel.Size = new System.Drawing.Size(43, 13);
             this.countryLabel.TabIndex = 32;
@@ -499,14 +457,14 @@
             // 
             // actor2LastNameTextBox
             // 
-            this.actor2LastNameTextBox.Location = new System.Drawing.Point(494, 255);
+            this.actor2LastNameTextBox.Location = new System.Drawing.Point(493, 61);
             this.actor2LastNameTextBox.Name = "actor2LastNameTextBox";
             this.actor2LastNameTextBox.Size = new System.Drawing.Size(121, 20);
             this.actor2LastNameTextBox.TabIndex = 37;
             // 
             // actor2FirstNameTextBox
             // 
-            this.actor2FirstNameTextBox.Location = new System.Drawing.Point(354, 255);
+            this.actor2FirstNameTextBox.Location = new System.Drawing.Point(494, 159);
             this.actor2FirstNameTextBox.Name = "actor2FirstNameTextBox";
             this.actor2FirstNameTextBox.Size = new System.Drawing.Size(121, 20);
             this.actor2FirstNameTextBox.TabIndex = 38;
@@ -514,7 +472,7 @@
             // actor2LastNameLabel
             // 
             this.actor2LastNameLabel.AutoSize = true;
-            this.actor2LastNameLabel.Location = new System.Drawing.Point(507, 239);
+            this.actor2LastNameLabel.Location = new System.Drawing.Point(529, 249);
             this.actor2LastNameLabel.Name = "actor2LastNameLabel";
             this.actor2LastNameLabel.Size = new System.Drawing.Size(95, 13);
             this.actor2LastNameLabel.TabIndex = 39;
@@ -523,7 +481,7 @@
             // actor2FirstNameLabel
             // 
             this.actor2FirstNameLabel.AutoSize = true;
-            this.actor2FirstNameLabel.Location = new System.Drawing.Point(371, 239);
+            this.actor2FirstNameLabel.Location = new System.Drawing.Point(352, 249);
             this.actor2FirstNameLabel.Name = "actor2FirstNameLabel";
             this.actor2FirstNameLabel.Size = new System.Drawing.Size(94, 13);
             this.actor2FirstNameLabel.TabIndex = 40;
@@ -561,6 +519,70 @@
             this.actor3LastNameLabel.TabIndex = 44;
             this.actor3LastNameLabel.Text = "Actor 3 Last Name";
             // 
+            // insertButton
+            // 
+            this.insertButton.Location = new System.Drawing.Point(98, 323);
+            this.insertButton.Name = "insertButton";
+            this.insertButton.Size = new System.Drawing.Size(142, 40);
+            this.insertButton.TabIndex = 45;
+            this.insertButton.Text = "Insert";
+            this.insertButton.UseVisualStyleBackColor = true;
+            this.insertButton.Click += new System.EventHandler(this.insertButton_Click);
+            // 
+            // searchForLabel
+            // 
+            this.searchForLabel.AutoSize = true;
+            this.searchForLabel.Location = new System.Drawing.Point(9, 9);
+            this.searchForLabel.Name = "searchForLabel";
+            this.searchForLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.searchForLabel.Size = new System.Drawing.Size(59, 13);
+            this.searchForLabel.TabIndex = 46;
+            this.searchForLabel.Text = "Search for:";
+            // 
+            // searchForMovies
+            // 
+            this.searchForMovies.AutoSize = true;
+            this.searchForMovies.Location = new System.Drawing.Point(83, 8);
+            this.searchForMovies.Name = "searchForMovies";
+            this.searchForMovies.Size = new System.Drawing.Size(60, 17);
+            this.searchForMovies.TabIndex = 47;
+            this.searchForMovies.Text = "Movies";
+            this.searchForMovies.UseVisualStyleBackColor = true;
+            this.searchForMovies.CheckedChanged += new System.EventHandler(this.searchForMovies_CheckedChanged);
+            // 
+            // searchForActors
+            // 
+            this.searchForActors.AutoSize = true;
+            this.searchForActors.Location = new System.Drawing.Point(149, 8);
+            this.searchForActors.Name = "searchForActors";
+            this.searchForActors.Size = new System.Drawing.Size(56, 17);
+            this.searchForActors.TabIndex = 48;
+            this.searchForActors.Text = "Actors";
+            this.searchForActors.UseVisualStyleBackColor = true;
+            this.searchForActors.CheckedChanged += new System.EventHandler(this.searchForActors_CheckedChanged);
+            // 
+            // searchForDirectors
+            // 
+            this.searchForDirectors.AutoSize = true;
+            this.searchForDirectors.Location = new System.Drawing.Point(211, 9);
+            this.searchForDirectors.Name = "searchForDirectors";
+            this.searchForDirectors.Size = new System.Drawing.Size(68, 17);
+            this.searchForDirectors.TabIndex = 49;
+            this.searchForDirectors.Text = "Directors";
+            this.searchForDirectors.UseVisualStyleBackColor = true;
+            this.searchForDirectors.CheckedChanged += new System.EventHandler(this.searchForDirectors_CheckedChanged);
+            // 
+            // searchForFinancial
+            // 
+            this.searchForFinancial.AutoSize = true;
+            this.searchForFinancial.Location = new System.Drawing.Point(285, 8);
+            this.searchForFinancial.Name = "searchForFinancial";
+            this.searchForFinancial.Size = new System.Drawing.Size(68, 17);
+            this.searchForFinancial.TabIndex = 50;
+            this.searchForFinancial.Text = "Financial";
+            this.searchForFinancial.UseVisualStyleBackColor = true;
+            this.searchForFinancial.CheckedChanged += new System.EventHandler(this.searchForFinancial_CheckedChanged);
+            // 
             // ratingSelectionSlider
             // 
             this.ratingSelectionSlider.Location = new System.Drawing.Point(28, 215);
@@ -578,6 +600,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1097, 388);
+            this.Controls.Add(this.searchForFinancial);
+            this.Controls.Add(this.searchForDirectors);
+            this.Controls.Add(this.searchForActors);
+            this.Controls.Add(this.searchForMovies);
+            this.Controls.Add(this.searchForLabel);
+            this.Controls.Add(this.insertButton);
             this.Controls.Add(this.actor3LastNameLabel);
             this.Controls.Add(this.actor3FirstNameLabel);
             this.Controls.Add(this.actor3LastNameTextBox);
@@ -608,7 +636,6 @@
             this.Controls.Add(this.resetButton);
             this.Controls.Add(this.searchButton);
             this.Controls.Add(this.resultsListView);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.ratingSelectionSlider);
             this.Controls.Add(this.labelHigherRating);
             this.Controls.Add(this.labelLowerRating);
@@ -646,15 +673,8 @@
         private System.Windows.Forms.Label labelLowerRating;
         private System.Windows.Forms.Label labelHigherRating;
         private SelectionRangeSlider ratingSelectionSlider;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ListView resultsListView;
         private System.Windows.Forms.Button searchButton;
-        private System.Windows.Forms.ColumnHeader movieTitleHeader;
-        private System.Windows.Forms.ColumnHeader directorFirstNameHeader;
-        private System.Windows.Forms.ColumnHeader directorLastNameHeader;
-        private System.Windows.Forms.ColumnHeader genreHeader;
-        private System.Windows.Forms.ColumnHeader minHeader;
-        private System.Windows.Forms.ColumnHeader maxHeader;
         private System.Windows.Forms.Button resetButton;
         private System.Windows.Forms.NumericUpDown popularityNumericUpDown;
         private System.Windows.Forms.ComboBox languageComboBox;
@@ -683,6 +703,12 @@
         private System.Windows.Forms.TextBox actor3LastNameTextBox;
         private System.Windows.Forms.Label actor3FirstNameLabel;
         private System.Windows.Forms.Label actor3LastNameLabel;
+        private System.Windows.Forms.Button insertButton;
+        private System.Windows.Forms.Label searchForLabel;
+        private System.Windows.Forms.CheckBox searchForMovies;
+        private System.Windows.Forms.CheckBox searchForActors;
+        private System.Windows.Forms.CheckBox searchForDirectors;
+        private System.Windows.Forms.CheckBox searchForFinancial;
     }
 }
 
