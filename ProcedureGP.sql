@@ -524,11 +524,14 @@ GO
 /**************************************
  * Procedure to Calculate Genre Gross
  **************************************/
+ DROP PROCEDURE IF EXISTS GP.GenreGross
+ GO
+
 CREATE PROCEDURE GP.GenreGross
 	@GenreName NVARCHAR(50)
 AS
 BEGIN
-	SELECT FORMAT(SUM(F.Gross), '##,##0') AS GenreGross
+	SELECT FORMAT(SUM(F.Gross), '##,##0') AS GenreGross, FORMAT(SUM(F.Budget), '##,##0') as GenreBudget, SUM(F.Gross-F.Budget) AS GenreProfit
 	FROM GP.Financial F
 		INNER JOIN GP.Genre G ON G.MovieID = F.MovieID
 	WHERE G.Genre = @GenreName
@@ -670,20 +673,20 @@ DROP PROCEDURE IF EXISTS GP.DirectorSearch
 	@DirectorLastName nvarchar(100) = null
 	AS
 	Select d.FirstName, d.LastName, m.Title
-	FROM GP.Director d
-	INNER JOIN GP.Genre g on d.MovieID = g.MovieID
-	INNER JOIN GP.Movies m on d.MovieID = M.MovieID
-	INNER JOIN GP.Region rE on rE.MovieID = M.MovieID
-	INNER JOIN GP.AdditionalInfo aI on aI.MovieID = M.MovieID
-	INNER JOIN GP.Financial f on f.MovieID = M.MovieID
-	INNER JOIN GP.Rating r on r.MovieID = M.MovieID
+	FROM GP.Movies m
+	INNER JOIN GP.Genre g on g.MovieID = m.MovieID
+	INNER JOIN GP.Region rE on rE.MovieID = m.MovieID
+	INNER JOIN GP.AdditionalInfo aI on aI.MovieID = m.MovieID
+	INNER JOIN GP.Financial f on f.MovieID = m.MovieID
+	INNER JOIN GP.Rating r on r.MovieID = m.MovieID
+	INNER JOIN GP.Director d on d.MovieID = m.MovieID
 	WHERE
 	(m.Title = @MovieTitle OR @MovieTitle IS NULL)
-		AND (g.Genre = @Genre OR @Genre IS NULL)
 		AND (rE.Country = @Country OR @Country IS NULL)
 		AND (rE.Language = @Language OR @Language IS NULL)
 		AND (d.FirstName = @DirectorFirstName OR @DirectorFirstName IS NULL)
 		AND (d.LastName = @DirectorLastname OR @DirectorLastName IS NULL)
+		AND (g.Genre = @Genre OR @Genre IS NULL)
 
 DROP PROCEDURE IF EXISTS GP.FinancialSearch
 GO
@@ -697,12 +700,12 @@ CREATE PROCEDURE GP.FinancialSearch
 	@DirectorLastName nvarchar(100) = null
 	AS
 	Select d.FirstName, d.LastName, m.Title
-	FROM GP.Director d
-	INNER JOIN GP.Genre g on d.MovieID = g.MovieID
-	INNER JOIN GP.Movies m on d.MovieID = M.MovieID
+	FROM GP.Financial f
+	INNER JOIN GP.Genre g on g.MovieID = f.MovieID
+	INNER JOIN GP.Movies m on m.MovieID = f.MovieID
 	INNER JOIN GP.Region rE on rE.MovieID = M.MovieID
 	INNER JOIN GP.AdditionalInfo aI on aI.MovieID = M.MovieID
-	INNER JOIN GP.Financial f on f.MovieID = M.MovieID
+	INNER JOIN GP.Director d on d.MovieID = M.MovieID
 	INNER JOIN GP.Rating r on r.MovieID = M.MovieID
 	WHERE
 	(m.Title = @MovieTitle OR @MovieTitle IS NULL)

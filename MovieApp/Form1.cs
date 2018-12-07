@@ -110,6 +110,28 @@ namespace MovieApp
 
             if(searchForMovies.Checked == true)
             {
+                //if(movieTitleTextBox.Text != "" && directorFirstNameTextbox.Text != "" &&  )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 ratingMin = ratingSelectionSlider.SelectedMin;
                 ratingMax = ratingSelectionSlider.SelectedMax;
                 if (movieTitleTextBox.Text != "")
@@ -345,7 +367,48 @@ namespace MovieApp
             }
             if(searchForFinancial.Checked == true)
             {
+                if(genreComboBox.Text != "")
+                {
+                    genre = genreComboBox.Text;
+                    SqlCommand cmd = new SqlCommand("GP.GenreGross", connect);
 
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add(new SqlParameter("@GenreName", genre));
+                    using (SqlDataReader rdr = cmd.ExecuteReader())
+                    {
+                        if (rdr.HasRows == false)
+                        {
+                            MessageBox.Show("Nothing returned for that query");
+                        }
+                        int count = 0;
+                        for (int col = 0; col < rdr.FieldCount; col++)
+                        {
+                            resultsListView.Columns.Add(rdr.GetName(col).ToString());
+                        }
+                        while (rdr.Read())
+                        {
+                            ListViewItem item = new ListViewItem(rdr["GenreGross"].ToString());
+                            for (int col = 1; col < rdr.FieldCount; col++)
+                            {
+                                item.SubItems.Add(rdr[col].ToString());
+                            }
+                            //ListViewItem item = new ListViewItem(rdr["Title"].ToString());
+                            //item.SubItems.Add(rdr["FirstName"].ToString());
+                            //item.SubItems.Add(rdr["LastName"].ToString());
+                            //item.SubItems.Add(rdr["Year"].ToString());
+                            //item.SubItems.Add(rdr["Runtime"].ToString());
+                            //item.SubItems.Add(rdr["ContentRating"].ToString());
+                            //item.SubItems.Add(rdr["FirstName"].ToString());
+                            //ListViewItem item = new ListViewItem(rdr["Title"].ToString());
+                            //item.SubItems.Add(rdr["Year"].ToString());
+                            //item.SubItems.Add(rdr["Runtime"].ToString());
+                            //item.SubItems.Add(rdr["ContentRating"].ToString());
+                            resultsListView.Items.Add(item);
+                            count++;
+                        }
+                    }
+                }
             }
 
 
