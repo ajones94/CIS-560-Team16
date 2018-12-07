@@ -11,11 +11,23 @@ CREATE PROCEDURE GP.DirectorGross
 	@DirectorFirstName NVARCHAR(50),
 	@DirectorLastName NVARCHAR(50)
 AS
-SELECT d.FirstName, d.LastName, FORMAT(SUM(F.Gross), '##,##0') AS Gross
+SELECT d.FirstName, d.LastName, FORMAT(SUM(F.Gross), '##,##0') AS Gross, FORMAT(SUM(F.Budget), '##,##0') AS Budget, FORMAT(SUM(F.Gross - F.Budget), '##,##0') AS Profit
 FROM GP.Financial F
 INNER JOIN GP.Director D ON D.MovieID = F.MovieID
 WHERE D.FirstName = @DirectorFirstName AND D.LastName = @DirectorLastName 
 GROUP BY D.FirstName, D.LastName
+GO
+
+EXEC GP.GetMovieID
+
+DROP PROCEDURE IF EXISTS GP.GetMovieID
+GO
+
+CREATE PROCEDURE GP.GetMovieID
+as
+SELECT COUNT(m.MovieID) as MovieCount
+FROM GP.Movies m
+GO
 -----------------------------------------------------INSERT-----------------------------------------------------------------
 
 /**************************************
@@ -46,11 +58,12 @@ GO
 
 CREATE PROCEDURE GP.InsertRating
 	@IMDBscore INT,
-	@VotesCount INT
+	@VotesCount INT,
+	@MovieID INT
 AS
 
-INSERT GP.Rating(IMDBscore, VotesCount)
-VALUES(@IMDBscore, @VotesCount);
+INSERT GP.Rating(MovieID, IMDBscore, VotesCount)
+VALUES(@MovieID, @IMDBscore, @VotesCount);
 GO
 
 /**************************************
@@ -62,11 +75,12 @@ GO
 
 CREATE PROCEDURE GP.InsertDirector
 	@FirstName NVARCHAR(20),
-	@LastName NVARCHAR(20)
+	@LastName NVARCHAR(20),
+	@MovieID INT
 AS
 
-INSERT GP.Director(FirstName, LastName)
-VALUES(@FirstName, @LastName);
+INSERT GP.Director(MovieID, firstName, LastName)
+VALUES(@MovieID, @FirstName, @LastName);
 GO
 
 
@@ -79,11 +93,12 @@ GO
 
 CREATE PROCEDURE GP.InsertActor
 	@FirstName NVARCHAR(20),
-	@LastName NVARCHAR(20)
+	@LastName NVARCHAR(20),
+	@MovieID INT
 AS
 
-INSERT GP.Actor(FirstName, LastName)
-VALUES(@FirstName, @LastName);
+INSERT GP.Actor(MovieID, FirstName, LastName)
+VALUES(@MovieID, @FirstName, @LastName);
 GO
 
 /**************************************
@@ -94,11 +109,12 @@ DROP PROCEDURE IF EXISTS GP.InsertGenre
 GO
 
 CREATE PROCEDURE GP.InsertGenre
-	@Genre NVARCHAR(15)
+	@Genre NVARCHAR(15),
+	@MovieID INT
 AS
 
-INSERT GP.Genre(Genre)
-VALUES(@Genre);
+INSERT GP.Genre(MovieID, Genre)
+VALUES(@MovieID, @Genre);
 GO
 
 /**************************************
@@ -110,11 +126,12 @@ GO
 
 CREATE PROCEDURE GP.InsertFinancial
 	@Budget INT,
-	@Gross INT
+	@Gross INT,
+	@MovieID INT
 AS
 
-INSERT GP.Financial(Budget, Gross)
-VALUES(@Budget, @Gross);
+INSERT GP.Financial(MovieID, Budget, Gross)
+VALUES(@MovieID, @Budget, @Gross);
 GO
 
 /**************************************
@@ -126,11 +143,12 @@ GO
 
 CREATE PROCEDURE GP.InsertRegion
 	@Country NVARCHAR(25),
-	@Language NVARCHAR(25)
+	@Language NVARCHAR(25),
+	@MovieID INT
 AS
 
-INSERT GP.Region(Country, Language)
-VALUES(@country, @Language);
+INSERT GP.Region(MovieID, Country, Language)
+VALUES(@MovieID, @Country, @Language);
 GO
 
 /**************************************
@@ -143,11 +161,12 @@ GO
 CREATE PROCEDURE GP.InsertAdditionalInfo
 	@MovieLink NVARCHAR(100),
 	@AspectRatio NVARCHAR(10),
-	@Color NVARCHAR(10)
+	@Color NVARCHAR(10),
+	@MovieID INT
 AS
 
-INSERT GP.AdditionalInfo(MovieLink, AspectRatio, Color)
-VALUES(@MovieLink, @AspectRatio, @Color);
+INSERT GP.AdditionalInfo(MovieID, MovieLink, AspectRatio, Color)
+VALUES(@MovieID, @MovieLink, @AspectRatio, @Color);
 GO
 
 -----------------------------------------------------UPDATE-----------------------------------------------------------------
@@ -446,19 +465,21 @@ WHERE M.Title = @Title;
 GO
 
 /**************************************
- * Actor Name Search Procedure
+ * Actor Name Search Procedure returns movie list.
  **************************************/
 
 DROP PROCEDURE IF EXISTS GP.ActorSearch
 GO
 
 CREATE PROCEDURE GP.ActorSearch
-    @Name NVARCHAR(20)
+    @FirstName NVARCHAR(50),
+	@LastName NVARCHAR(50)
 AS
 
-SELECT *
-FROM GP.Actor A
-WHERE A.FirstName = @Name OR A.LastName = @Name;
+SELECT M.Title as MovieTitle
+FROM GP.Movies M
+INNER JOIN GP.Actor a ON a.MovieID = M.MovieID
+WHERE A.FirstName = @FirstName OR A.LastName = @LastName;
 GO
 
 /**************************************
@@ -556,6 +577,7 @@ BEGIN
 	FROM GP.Financial F
 		INNER JOIN GP.Genre G ON G.MovieID = F.MovieID
 	WHERE G.Genre = @GenreName
+	GROUP BY Genre
 END
 
 -----------------------------------------------------FINANCIAL-----------------------------------------------------------------
@@ -610,6 +632,29 @@ ORDER BY F.Budget DESC
 END
 GO
 
+EXEC GP.MovieProfit
+	@Title = 'Die Hard'
+	GO
+
+
+DROP PROCEDURE IF EXISTS GP.MovieProfit
+GO
+
+CREATE PROCEDURE GP.MovieProfit
+	@Title NVARCHAR(50)
+AS
+BEGIN
+SELECT FORMAT(SUM(F.Gross), '##,##0') AS MovieGross, FORMAT(SUM(F.Budget), '##,##0') as MovieBudget, FORMAT(SUM(F.Gross-F.Budget), '##,##0') AS MovieProfit
+FROM GP.Movies M
+	INNER JOIN GP.Financial F ON F.MovieID = M.MovieID
+	WHERE M.Title = @Title
+GROUP BY F.Budget, M.Title
+ORDER BY F.Budget DESC
+END
+GO
+
+
+
 /**************************************
  * Procedure to find 100 highest grossing movies
  **************************************/
@@ -651,6 +696,10 @@ GROUP BY M.Title
 ORDER BY Profit DESC
 GO
 
+
+
+
+
 DROP PROCEDURE IF EXISTS GP.MovieSearch
 GO
 
@@ -679,6 +728,8 @@ CREATE PROCEDURE GP.MovieSearch
 		AND (rE.Language = @Language OR @Language IS NULL)
 		AND (d.FirstName = @DirectorFirstName OR @DirectorFirstName IS NULL)
 		AND (d.LastName = @DirectorLastname OR @DirectorLastName IS NULL)
+
+GROUP BY g.Title, g.Year, g.Runtime, g.ContentRating, d.FirstName, d.LastName, rE.Language, rE.Country, aI.AspectRatio, aI.Color, f.Budget, f.Gross, r.IMDBscore, r.VotesCount
 GO
 
 
@@ -709,8 +760,12 @@ DROP PROCEDURE IF EXISTS GP.DirectorSearch
 		AND (d.LastName = @DirectorLastname OR @DirectorLastName IS NULL)
 		AND (g.Genre = @Genre OR @Genre IS NULL)
 
+GROUP BY d.FirstName, d.LastName, m.Title
+
 DROP PROCEDURE IF EXISTS GP.FinancialSearch
 GO
+
+
 
 CREATE PROCEDURE GP.FinancialSearch
 	@MovieTitle nvarchar(MAX) = null,
@@ -735,9 +790,70 @@ CREATE PROCEDURE GP.FinancialSearch
 		AND (rE.Language = @Language OR @Language IS NULL)
 		AND (d.FirstName = @DirectorFirstName OR @DirectorFirstName IS NULL)
 		AND (d.LastName = @DirectorLastname OR @DirectorLastName IS NULL)
+GO
+
+DROP PROCEDURE IF EXISTS GP.GeneralSearch
+GO
+
+EXEC GP.GeneralSearch 
+@Genre = 'Comedy'
+GO
+
+CREATE PROCEDURE GP.GeneralSearch
+	@MovieTitle nvarchar(MAX) = null,
+	@Genre nvarchar(50) = null,
+	@Country nvarchar(100) = null,
+	@Language nvarchar(100) = null,
+	@DirectorFirstName nvarchar(100) = null,
+	@DirectorLastName nvarchar(100) = null,
+	@Actor1FirstName nvarchar(100) = null,
+	@Actor1LastName nvarchar(100) = null,
+	@Actor2FirstName nvarchar(100) = null,
+	@Actor2LastName nvarchar(100) = null,
+	@Actor3FirstName nvarchar(100) = null,
+	@Actor3LastName nvarchar(100) = null,
+	@MinRating INT = null,
+	@MaxRating INT = null,
+	@Popularity INT = null,
+	@Color nvarchar(100) = null,
+	@Budget INT = null,
+	@Gross INT = null,
+	@AspectRatio DECIMAL = null
+	AS
+
+	Select m.Title as Title
+		FROM GP.Movies M
+		INNER JOIN GP.Genre g on g.MovieID = M.MovieID
+		INNER JOIN GP.Director d on d.MovieID = M.MovieID
+		INNER JOIN GP.Region rE on rE.MovieID = M.MovieID
+		INNER JOIN GP.AdditionalInfo aI on aI.MovieID = M.MovieID
+		INNER JOIN GP.Financial f on f.MovieID = M.MovieID
+		INNER JOIN GP.Rating r on r.MovieID = M.MovieID 
+		INNER JOIN GP.Actor a on a.MovieID = M.MovieID
+	WHERE
+		(m.Title = @MovieTitle OR @MovieTitle IS NULL)
+		AND (g.Genre = @Genre OR @Genre IS NULL)
+		AND (rE.Country = @Country OR @Country IS NULL)
+		AND (rE.Language = @Language OR @Language IS NULL)
+		AND (d.FirstName = @DirectorFirstName OR @DirectorFirstName IS NULL)
+		AND (d.LastName = @DirectorLastName OR @DirectorLastName IS NULL)
+	AND (a.FirstName = @Actor1FirstName OR @Actor1FirstName IS NULL)
+	AND (a.LastName = @Actor1LastName OR @Actor1LastName IS NULL)
+		AND (a.FirstName = @Actor2FirstName OR @Actor2FirstName IS NULL)
+		AND (a.LastName = @Actor2LastName OR @Actor2LastName IS NULL)
+		AND (a.FirstName = @Actor3FirstName OR @Actor3FirstName IS NULL)
+		AND (a.LastName = @Actor3LastName OR @Actor3LastName IS NULL)
+		--AND (r.IMDBscore BETWEEN @MinRating AND @MaxRating)
+		--AND (r.VotesCount = @Popularity OR @Popularity IS NULL)
+		AND (aI.Color = @Color OR @Color IS NULL)
+		--AND (f.Budget = @Budget OR @Budget IS NULL)
+		--AND (f.Gross = @Gross OR @Gross IS NULL)
+		--AND (aI.AspectRatio = @AspectRatio OR @AspectRatio IS NULL)
+
+GROUP BY m.Title
 
 
-
+GO
 
 
 

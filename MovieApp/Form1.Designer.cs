@@ -306,22 +306,22 @@
             // 
             // actorFirstNameTextBox
             // 
-            this.actorFirstNameTextBox.Location = new System.Drawing.Point(342, 265);
+            this.actorFirstNameTextBox.Location = new System.Drawing.Point(357, 159);
             this.actorFirstNameTextBox.Name = "actorFirstNameTextBox";
-            this.actorFirstNameTextBox.Size = new System.Drawing.Size(136, 20);
+            this.actorFirstNameTextBox.Size = new System.Drawing.Size(120, 20);
             this.actorFirstNameTextBox.TabIndex = 22;
             // 
             // actorLastNameTextBox
             // 
-            this.actorLastNameTextBox.Location = new System.Drawing.Point(510, 265);
+            this.actorLastNameTextBox.Location = new System.Drawing.Point(494, 159);
             this.actorLastNameTextBox.Name = "actorLastNameTextBox";
-            this.actorLastNameTextBox.Size = new System.Drawing.Size(130, 20);
+            this.actorLastNameTextBox.Size = new System.Drawing.Size(120, 20);
             this.actorLastNameTextBox.TabIndex = 23;
             // 
             // labelActorFirstName
             // 
             this.labelActorFirstName.AutoSize = true;
-            this.labelActorFirstName.Location = new System.Drawing.Point(517, 143);
+            this.labelActorFirstName.Location = new System.Drawing.Point(380, 143);
             this.labelActorFirstName.Name = "labelActorFirstName";
             this.labelActorFirstName.Size = new System.Drawing.Size(85, 13);
             this.labelActorFirstName.TabIndex = 24;
@@ -330,7 +330,7 @@
             // actorlastNameLabel
             // 
             this.actorlastNameLabel.AutoSize = true;
-            this.actorlastNameLabel.Location = new System.Drawing.Point(507, 45);
+            this.actorlastNameLabel.Location = new System.Drawing.Point(507, 143);
             this.actorlastNameLabel.Name = "actorlastNameLabel";
             this.actorlastNameLabel.Size = new System.Drawing.Size(86, 13);
             this.actorlastNameLabel.TabIndex = 25;
@@ -402,7 +402,7 @@
             this.colorComboBox.Items.AddRange(new object[] {
             "Color",
             "Black and White"});
-            this.colorComboBox.Location = new System.Drawing.Point(354, 158);
+            this.colorComboBox.Location = new System.Drawing.Point(493, 61);
             this.colorComboBox.Name = "colorComboBox";
             this.colorComboBox.Size = new System.Drawing.Size(121, 21);
             this.colorComboBox.TabIndex = 33;
@@ -410,7 +410,7 @@
             // colorLabel
             // 
             this.colorLabel.AutoSize = true;
-            this.colorLabel.Location = new System.Drawing.Point(394, 143);
+            this.colorLabel.Location = new System.Drawing.Point(533, 46);
             this.colorLabel.Name = "colorLabel";
             this.colorLabel.Size = new System.Drawing.Size(31, 13);
             this.colorLabel.TabIndex = 34;
@@ -456,14 +456,14 @@
             // 
             // actor2LastNameTextBox
             // 
-            this.actor2LastNameTextBox.Location = new System.Drawing.Point(493, 61);
+            this.actor2LastNameTextBox.Location = new System.Drawing.Point(503, 265);
             this.actor2LastNameTextBox.Name = "actor2LastNameTextBox";
             this.actor2LastNameTextBox.Size = new System.Drawing.Size(121, 20);
             this.actor2LastNameTextBox.TabIndex = 37;
             // 
             // actor2FirstNameTextBox
             // 
-            this.actor2FirstNameTextBox.Location = new System.Drawing.Point(494, 159);
+            this.actor2FirstNameTextBox.Location = new System.Drawing.Point(355, 265);
             this.actor2FirstNameTextBox.Name = "actor2FirstNameTextBox";
             this.actor2FirstNameTextBox.Size = new System.Drawing.Size(121, 20);
             this.actor2FirstNameTextBox.TabIndex = 38;
@@ -574,14 +574,14 @@
             // ratingSelectionSlider
             // 
             this.ratingSelectionSlider.Location = new System.Drawing.Point(28, 215);
-            this.ratingSelectionSlider.Max = 100;
-            this.ratingSelectionSlider.Min = 0;
+            this.ratingSelectionSlider.Max = 10;
+            this.ratingSelectionSlider.Min = 1;
             this.ratingSelectionSlider.Name = "ratingSelectionSlider";
-            this.ratingSelectionSlider.SelectedMax = 100;
-            this.ratingSelectionSlider.SelectedMin = 0;
+            this.ratingSelectionSlider.SelectedMax = 10;
+            this.ratingSelectionSlider.SelectedMin = 1;
             this.ratingSelectionSlider.Size = new System.Drawing.Size(269, 19);
             this.ratingSelectionSlider.TabIndex = 13;
-            this.ratingSelectionSlider.Value = 50;
+            this.ratingSelectionSlider.Value = 5;
             // 
             // Form1
             // 

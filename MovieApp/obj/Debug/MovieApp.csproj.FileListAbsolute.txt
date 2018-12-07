@@ -19,3 +19,14 @@ D:\Sync\College\CIS 562\Project\CIS-560-Team16\MovieApp\obj\Debug\MovieApp.cspro
 D:\Sync\College\CIS 562\Project\CIS-560-Team16\MovieApp\obj\Debug\MovieApp.csproj.CoreCompileInputs.cache
 D:\Sync\College\CIS 562\Project\CIS-560-Team16\MovieApp\obj\Debug\MovieApp.exe
 D:\Sync\College\CIS 562\Project\CIS-560-Team16\MovieApp\obj\Debug\MovieApp.pdb
+U:\Documents\CIS562\MovieApp\MovieApp\MovieApp\bin\Debug\MovieApp.exe.config
+U:\Documents\CIS562\MovieApp\MovieApp\MovieApp\bin\Debug\MovieApp.exe
+U:\Documents\CIS562\MovieApp\MovieApp\MovieApp\bin\Debug\MovieApp.pdb
+U:\Documents\CIS562\MovieApp\MovieApp\MovieApp\obj\Debug\MovieApp.csprojAssemblyReference.cache
+U:\Documents\CIS562\MovieApp\MovieApp\MovieApp\obj\Debug\MovieApp.AdminDashboard.resources
+U:\Documents\CIS562\MovieApp\MovieApp\MovieApp\obj\Debug\MovieApp.Form1.resources
+U:\Documents\CIS562\MovieApp\MovieApp\MovieApp\obj\Debug\MovieApp.Properties.Resources.resources
+U:\Documents\CIS562\MovieApp\MovieApp\MovieApp\obj\Debug\MovieApp.csproj.GenerateResource.cache
+U:\Documents\CIS562\MovieApp\MovieApp\MovieApp\obj\Debug\MovieApp.csproj.CoreCompileInputs.cache
+U:\Documents\CIS562\MovieApp\MovieApp\MovieApp\obj\Debug\MovieApp.exe
+U:\Documents\CIS562\MovieApp\MovieApp\MovieApp\obj\Debug\MovieApp.pdb
