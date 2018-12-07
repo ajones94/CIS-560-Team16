@@ -5,3 +5,10 @@
 \\files.cs.ksu.edu\ianriley97\Documents\CIS562\MovieApp\MovieApp\DatabaseParserNew\bin\Debug\DatabaseParserNew.pdb
 \\files.cs.ksu.edu\ianriley97\Documents\CIS562\MovieApp\MovieApp\DatabaseParserNew\obj\Debug\DatabaseParserNew.exe
 \\files.cs.ksu.edu\ianriley97\Documents\CIS562\MovieApp\MovieApp\DatabaseParserNew\obj\Debug\DatabaseParserNew.pdb
+U:\Documents\CIS562\MovieApp\MovieApp\DatabaseParserNew\bin\Debug\DatabaseParserNew.exe.config
+U:\Documents\CIS562\MovieApp\MovieApp\DatabaseParserNew\bin\Debug\DatabaseParserNew.exe
+U:\Documents\CIS562\MovieApp\MovieApp\DatabaseParserNew\bin\Debug\DatabaseParserNew.pdb
+U:\Documents\CIS562\MovieApp\MovieApp\DatabaseParserNew\obj\Debug\DatabaseParser.csprojAssemblyReference.cache
+U:\Documents\CIS562\MovieApp\MovieApp\DatabaseParserNew\obj\Debug\DatabaseParser.csproj.CoreCompileInputs.cache
+U:\Documents\CIS562\MovieApp\MovieApp\DatabaseParserNew\obj\Debug\DatabaseParserNew.exe
+U:\Documents\CIS562\MovieApp\MovieApp\DatabaseParserNew\obj\Debug\DatabaseParserNew.pdb

@@ -142,7 +142,7 @@ namespace DatabaseParser
                                     //else
                                     //{
                                         fieldDataMovies[0] = movieID.ToString();
-                                        fieldDataMovies[1] = fieldData[i];
+                                        fieldDataMovies[1] = fieldData[i].Substring(0, fieldData[i].Length - 1);
                                         movieID++;
                                     //}
                                     

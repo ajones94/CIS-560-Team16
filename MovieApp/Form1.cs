@@ -45,7 +45,7 @@ namespace MovieApp
 
             this.Size = new System.Drawing.Size(838, 427);
             this.resultsListView.Location = new Point(373, 12);
-
+            insertButton.Visible = false;
             this.popularityLabel.Visible = false;
             this.popularityNumericUpDown.Visible = false;
             //this.languageLabel.Visible = false;
@@ -250,6 +250,8 @@ namespace MovieApp
             }
             if(searchForDirectors.Checked == true)
             {
+                //If empty run the director profit. 
+                //If director first and last name get count.
                 ratingMin = ratingSelectionSlider.SelectedMin;
                 ratingMax = ratingSelectionSlider.SelectedMax;
                 if (movieTitleTextBox.Text != "")
@@ -367,6 +369,7 @@ namespace MovieApp
             }
             if(searchForFinancial.Checked == true)
             {
+                //Empty search, do the top100 profit procedure.
                 if(genreComboBox.Text != "")
                 {
                     genre = genreComboBox.Text;
@@ -411,27 +414,7 @@ namespace MovieApp
                 }
             }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            
 
             ratingMin = ratingSelectionSlider.SelectedMin;
             ratingMax = ratingSelectionSlider.SelectedMax;
