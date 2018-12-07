@@ -72,7 +72,6 @@
             this.insertButton = new System.Windows.Forms.Button();
             this.searchForLabel = new System.Windows.Forms.Label();
             this.searchForMovies = new System.Windows.Forms.CheckBox();
-            this.searchForActors = new System.Windows.Forms.CheckBox();
             this.searchForDirectors = new System.Windows.Forms.CheckBox();
             this.searchForFinancial = new System.Windows.Forms.CheckBox();
             this.ratingSelectionSlider = new MovieApp.SelectionRangeSlider();
@@ -114,7 +113,7 @@
             // directorFirstNameLabel
             // 
             this.directorFirstNameLabel.AutoSize = true;
-            this.directorFirstNameLabel.Location = new System.Drawing.Point(15, 143);
+            this.directorFirstNameLabel.Location = new System.Drawing.Point(25, 143);
             this.directorFirstNameLabel.Name = "directorFirstNameLabel";
             this.directorFirstNameLabel.Size = new System.Drawing.Size(97, 13);
             this.directorFirstNameLabel.TabIndex = 4;
@@ -123,7 +122,7 @@
             // directorLastNameLabel
             // 
             this.directorLastNameLabel.AutoSize = true;
-            this.directorLastNameLabel.Location = new System.Drawing.Point(213, 143);
+            this.directorLastNameLabel.Location = new System.Drawing.Point(199, 143);
             this.directorLastNameLabel.Name = "directorLastNameLabel";
             this.directorLastNameLabel.Size = new System.Drawing.Size(98, 13);
             this.directorLastNameLabel.TabIndex = 5;
@@ -284,7 +283,7 @@
             "Korean"});
             this.languageComboBox.Location = new System.Drawing.Point(11, 107);
             this.languageComboBox.Name = "languageComboBox";
-            this.languageComboBox.Size = new System.Drawing.Size(120, 21);
+            this.languageComboBox.Size = new System.Drawing.Size(137, 21);
             this.languageComboBox.TabIndex = 19;
             // 
             // languageLabel
@@ -385,7 +384,7 @@
             this.countryComboBox.FormattingEnabled = true;
             this.countryComboBox.Location = new System.Drawing.Point(180, 108);
             this.countryComboBox.Name = "countryComboBox";
-            this.countryComboBox.Size = new System.Drawing.Size(121, 21);
+            this.countryComboBox.Size = new System.Drawing.Size(130, 21);
             this.countryComboBox.TabIndex = 31;
             // 
             // countryLabel
@@ -550,21 +549,10 @@
             this.searchForMovies.UseVisualStyleBackColor = true;
             this.searchForMovies.CheckedChanged += new System.EventHandler(this.searchForMovies_CheckedChanged);
             // 
-            // searchForActors
-            // 
-            this.searchForActors.AutoSize = true;
-            this.searchForActors.Location = new System.Drawing.Point(149, 8);
-            this.searchForActors.Name = "searchForActors";
-            this.searchForActors.Size = new System.Drawing.Size(56, 17);
-            this.searchForActors.TabIndex = 48;
-            this.searchForActors.Text = "Actors";
-            this.searchForActors.UseVisualStyleBackColor = true;
-            this.searchForActors.CheckedChanged += new System.EventHandler(this.searchForActors_CheckedChanged);
-            // 
             // searchForDirectors
             // 
             this.searchForDirectors.AutoSize = true;
-            this.searchForDirectors.Location = new System.Drawing.Point(211, 9);
+            this.searchForDirectors.Location = new System.Drawing.Point(149, 8);
             this.searchForDirectors.Name = "searchForDirectors";
             this.searchForDirectors.Size = new System.Drawing.Size(68, 17);
             this.searchForDirectors.TabIndex = 49;
@@ -575,7 +563,7 @@
             // searchForFinancial
             // 
             this.searchForFinancial.AutoSize = true;
-            this.searchForFinancial.Location = new System.Drawing.Point(285, 8);
+            this.searchForFinancial.Location = new System.Drawing.Point(223, 8);
             this.searchForFinancial.Name = "searchForFinancial";
             this.searchForFinancial.Size = new System.Drawing.Size(68, 17);
             this.searchForFinancial.TabIndex = 50;
@@ -602,7 +590,6 @@
             this.ClientSize = new System.Drawing.Size(1097, 388);
             this.Controls.Add(this.searchForFinancial);
             this.Controls.Add(this.searchForDirectors);
-            this.Controls.Add(this.searchForActors);
             this.Controls.Add(this.searchForMovies);
             this.Controls.Add(this.searchForLabel);
             this.Controls.Add(this.insertButton);
@@ -706,7 +693,6 @@
         private System.Windows.Forms.Button insertButton;
         private System.Windows.Forms.Label searchForLabel;
         private System.Windows.Forms.CheckBox searchForMovies;
-        private System.Windows.Forms.CheckBox searchForActors;
         private System.Windows.Forms.CheckBox searchForDirectors;
         private System.Windows.Forms.CheckBox searchForFinancial;
     }

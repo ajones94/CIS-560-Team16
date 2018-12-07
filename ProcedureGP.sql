@@ -597,6 +597,95 @@ GROUP BY M.Title
 ORDER BY Profit ASC
 GO
 
+DROP PROCEDURE IF EXISTS GP.MovieSearch
+GO
+
+CREATE PROCEDURE GP.MovieSearch
+	@MovieTitle nvarchar(MAX) = null,
+	@Genre nvarchar(50) = null,
+	@Country nvarchar(100) = null,
+	@Language nvarchar(100) = null,
+	@DirectorFirstName nvarchar(100) = null,
+	@DirectorLastName nvarchar(100) = null
+ 	as 
+	SELECT g.Title, g.Year, g.Runtime, g.ContentRating, d.FirstName, d.LastName, rE.Language, rE.Country, aI.AspectRatio, aI.Color, f.Budget, f.Gross, r.IMDBscore, r.VotesCount
+	FROM GP.Genre M
+	INNER JOIN GP.Movies g on g.MovieID = M.MovieID
+	INNER JOIN GP.Director d on d.MovieID = M.MovieID
+	INNER JOIN GP.Region rE on rE.MovieID = M.MovieID
+	INNER JOIN GP.AdditionalInfo aI on aI.MovieID = M.MovieID
+	INNER JOIN GP.Financial f on f.MovieID = M.MovieID
+	INNER JOIN GP.Rating r on r.MovieID = M.MovieID
+		
+		/*INNER JOIN GP.Actor A ON a.MovieID = M.MovieID*/
+	WHERE
+	(g.Title = @MovieTitle OR @MovieTitle IS NULL)
+		AND (M.Genre = @Genre OR @Genre IS NULL)
+		AND (rE.Country = @Country OR @Country IS NULL)
+		AND (rE.Language = @Language OR @Language IS NULL)
+		AND (d.FirstName = @DirectorFirstName OR @DirectorFirstName IS NULL)
+		AND (d.LastName = @DirectorLastname OR @DirectorLastName IS NULL)
+GO
+
+
+
+DROP PROCEDURE IF EXISTS GP.DirectorSearch
+	GO
+	CREATE PROCEDURE GP.DirectorSearch
+	@MovieTitle nvarchar(MAX) = null,
+	@Genre nvarchar(50) = null,
+	@Country nvarchar(100) = null,
+	@Language nvarchar(100) = null,
+	@DirectorFirstName nvarchar(100) = null,
+	@DirectorLastName nvarchar(100) = null
+	AS
+	Select d.FirstName, d.LastName, m.Title
+	FROM GP.Director d
+	INNER JOIN GP.Genre g on d.MovieID = g.MovieID
+	INNER JOIN GP.Movies m on d.MovieID = M.MovieID
+	INNER JOIN GP.Region rE on rE.MovieID = M.MovieID
+	INNER JOIN GP.AdditionalInfo aI on aI.MovieID = M.MovieID
+	INNER JOIN GP.Financial f on f.MovieID = M.MovieID
+	INNER JOIN GP.Rating r on r.MovieID = M.MovieID
+	WHERE
+	(m.Title = @MovieTitle OR @MovieTitle IS NULL)
+		AND (g.Genre = @Genre OR @Genre IS NULL)
+		AND (rE.Country = @Country OR @Country IS NULL)
+		AND (rE.Language = @Language OR @Language IS NULL)
+		AND (d.FirstName = @DirectorFirstName OR @DirectorFirstName IS NULL)
+		AND (d.LastName = @DirectorLastname OR @DirectorLastName IS NULL)
+
+DROP PROCEDURE IF EXISTS GP.FinancialSearch
+GO
+
+CREATE PROCEDURE GP.FinancialSearch
+	@MovieTitle nvarchar(MAX) = null,
+	@Genre nvarchar(50) = null,
+	@Country nvarchar(100) = null,
+	@Language nvarchar(100) = null,
+	@DirectorFirstName nvarchar(100) = null,
+	@DirectorLastName nvarchar(100) = null
+	AS
+	Select d.FirstName, d.LastName, m.Title
+	FROM GP.Director d
+	INNER JOIN GP.Genre g on d.MovieID = g.MovieID
+	INNER JOIN GP.Movies m on d.MovieID = M.MovieID
+	INNER JOIN GP.Region rE on rE.MovieID = M.MovieID
+	INNER JOIN GP.AdditionalInfo aI on aI.MovieID = M.MovieID
+	INNER JOIN GP.Financial f on f.MovieID = M.MovieID
+	INNER JOIN GP.Rating r on r.MovieID = M.MovieID
+	WHERE
+	(m.Title = @MovieTitle OR @MovieTitle IS NULL)
+		AND (g.Genre = @Genre OR @Genre IS NULL)
+		AND (rE.Country = @Country OR @Country IS NULL)
+		AND (rE.Language = @Language OR @Language IS NULL)
+		AND (d.FirstName = @DirectorFirstName OR @DirectorFirstName IS NULL)
+		AND (d.LastName = @DirectorLastname OR @DirectorLastName IS NULL)
+
+
+
+
+
 
  /*/**************************************************
  * Specific Search Procedure using Title, Tag, Genre
