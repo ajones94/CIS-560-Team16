@@ -412,6 +412,10 @@ END
  * Movie Title Search Procedure
  **************************************/
 
+EXEC GP.TitleSearch
+	@Title = 'Die Hard'
+	GO
+
 DROP PROCEDURE IF EXISTS GP.TitleSearch
 GO
 
@@ -421,7 +425,7 @@ AS
 
 SELECT *
 FROM GP.Movies M
-WHERE CONTAINS(M.Title, @Title);
+WHERE M.Title = @Title;
 GO
 
 /**************************************
@@ -437,7 +441,7 @@ AS
 
 SELECT *
 FROM GP.Actor A
-WHERE CONTAINS(A.FirstName, @Name) AND CONTAINS (A.LastName, @Name);
+WHERE A.FirstName = @Name OR A.LastName = @Name;
 GO
 
 /**************************************
@@ -453,7 +457,7 @@ AS
 
 SELECT *
 FROM GP.Director D
-WHERE CONTAINS(D.FirstName, @Name) AND CONTAINS (D.LastName, @Name);
+WHERE D.FirstName = @Name OR D.LastName = @Name;
 GO
 
 /**************************************
