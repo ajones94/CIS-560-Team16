@@ -449,7 +449,7 @@ END
  **************************************/
 
 EXEC GP.TitleSearch
-	@Title = 'Die Hard'
+	@Title = 'tet'
 	GO
 
 DROP PROCEDURE IF EXISTS GP.TitleSearch
@@ -459,9 +459,17 @@ CREATE PROCEDURE GP.TitleSearch
    @Title NVARCHAR(50)
 AS
 
-SELECT *
-FROM GP.Movies M
-WHERE M.Title = @Title;
+SELECT M.Title, M.Year, M.Runtime, M.ContentRating, d.FirstName, d.LastName, rE.Language, rE.Country, aI.AspectRatio, aI.Color, f.Budget, f.Gross, r.IMDBscore, r.VotesCount
+	FROM GP.Movies M
+	INNER JOIN GP.Genre g on g.MovieID = M.MovieID
+	INNER JOIN GP.Director d on d.MovieID = M.MovieID
+	INNER JOIN GP.Region rE on rE.MovieID = M.MovieID
+	INNER JOIN GP.AdditionalInfo aI on aI.MovieID = M.MovieID
+	INNER JOIN GP.Financial f on f.MovieID = M.MovieID
+	INNER JOIN GP.Rating r on r.MovieID = M.MovieID
+	WHERE M.Title = @Title
+
+GROUP BY M.Title, M.Year, M.Runtime, M.ContentRating, d.FirstName, d.LastName, rE.Language, rE.Country, aI.AspectRatio, aI.Color, f.Budget, f.Gross, r.IMDBscore, r.VotesCount
 GO
 
 /**************************************
