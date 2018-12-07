@@ -1,4 +1,21 @@
+-----------------------------------------------------NewProcedures-----------------------------------------------------------------
 
+
+/**************************************
+ * Procedure to Calculate Director Gross based on First and Last Name of Director
+ **************************************/
+DROP PROCEDURE IF EXISTS GP.DirectorGross
+
+GO
+CREATE PROCEDURE GP.DirectorGross
+	@DirectorFirstName NVARCHAR(50),
+	@DirectorLastName NVARCHAR(50)
+AS
+SELECT d.FirstName, d.LastName, FORMAT(SUM(F.Gross), '##,##0') AS Gross
+FROM GP.Financial F
+INNER JOIN GP.Director D ON D.MovieID = F.MovieID
+WHERE D.FirstName = @DirectorFirstName AND D.LastName = @DirectorLastName 
+GROUP BY D.FirstName, D.LastName
 -----------------------------------------------------INSERT-----------------------------------------------------------------
 
 /**************************************
