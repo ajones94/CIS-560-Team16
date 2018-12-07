@@ -479,7 +479,7 @@ AS
 SELECT M.Title as MovieTitle
 FROM GP.Movies M
 INNER JOIN GP.Actor a ON a.MovieID = M.MovieID
-WHERE A.FirstName = @FirstName OR A.LastName = @LastName;
+WHERE A.FirstName = @FirstName AND A.LastName = @LastName;
 GO
 
 /**************************************
